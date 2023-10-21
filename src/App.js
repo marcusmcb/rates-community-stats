@@ -1,14 +1,16 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react';
 import Papa from 'papaparse';
-import DataCard from './components/DataCard';
+import LeftPanel from './components/LeftPanel';
+import RightPanel from './components/RightPanel';
 import './App.css';
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [processedData, setProcessedData] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedAdded, setSelectedAdded] = useState(null);
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortedColumn, setSortedColumn] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [processedData, setProcessedData] = useState({})
 
   useEffect(() => {
     const fetchData = () => {
@@ -20,13 +22,17 @@ const App = () => {
             skipEmptyLines: true,
             delimiter: ','
           });
-          console.log(parsedData)
+
           const dataByAdded = processData(parsedData.data);
-          console.log("PD: ", dataByAdded)
-          setProcessedData(dataByAdded)
+          setProcessedData(dataByAdded);
           setData(parsedData.data.map((item, index) => ({ ...item, originalOrder: index })));
+
+          // Default to the top "added" value after processing
+          const topAdded = Object.keys(dataByAdded).sort((a, b) => dataByAdded[b].length - dataByAdded[a].length)[0];
+          setSelectedAdded(topAdded);
         });
     };
+
     fetchData();
   }, []);
 
@@ -54,7 +60,7 @@ const App = () => {
   };
 
   const processData = (parsedData) => {
-    const mappedData = parsedData.reduce((acc, curr) => {
+    return parsedData.reduce((acc, curr) => {
       const { title, artist, added } = curr;
       if (!acc[added]) {
         acc[added] = [];
@@ -62,7 +68,6 @@ const App = () => {
       acc[added].push({ title, artist });
       return acc;
     }, {});
-    return mappedData;
   };
 
   const filteredData = data.filter(item =>
@@ -71,29 +76,17 @@ const App = () => {
     item.added.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const sortedDataEntries = Object.entries(processedData).sort((a, b) => b[1].length - a[1].length);
-
   return (
     <Fragment>
       <div style={{ textAlign: 'center', padding: '20px', fontSize: '24px' }}>
         Rate's Community Stats
       </div>
-      <div className="cardContainer">
-        {sortedDataEntries.map(([added, entries], index, arr) => {
-          // Render every two cards as a pair
-          if (index % 2 === 0) {
-            return (
-              <div key={added} className="cardRow">
-                <DataCard added={added} entries={entries} />
-                {arr[index + 1] && <DataCard added={arr[index + 1][0]} entries={arr[index + 1][1]} />}
-              </div>
-            );
-          }
-          // For odd indices, don't render anything (since we're already rendering them as part of the previous pair)
-          return null;
-        })}
+
+      <div className="panels-container">
+        <LeftPanel data={processedData} selectedAdded={selectedAdded} onSelect={setSelectedAdded} />
+        <RightPanel data={processedData[selectedAdded] || []} />
       </div>
-      
+
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '25px' }}>
         <input
           style={{ textAlign: 'center' }}
@@ -103,6 +96,7 @@ const App = () => {
           onChange={e => setSearchTerm(e.target.value)}
         />
       </div>
+
       <table>
         <thead>
           <tr>
@@ -125,6 +119,6 @@ const App = () => {
       </table>
     </Fragment>
   );
-}
+};
 
 export default App;
