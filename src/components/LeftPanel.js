@@ -8,8 +8,10 @@ const LeftPanel = ({ data, selectedAdded, onSelect }) => {
     <div className="left-panel panel">
       {sortedDataEntries.map(([added, entries]) => (
         <div key={added} className={`added-entry ${added === selectedAdded ? 'selected' : ''}`} onClick={() => onSelect(added)}>
-          <div className="added-label added-name">{added}</div> {/* This is the change */}
-          <div>({entries.length} songs)</div>
+          <div className="added-label added-name">{added}</div>
+          {
+            entries.length === 1 ? (<div>({entries.length} song)</div>) : (<div>({entries.length} songs)</div>)
+          }
         </div>
       ))}
     </div>

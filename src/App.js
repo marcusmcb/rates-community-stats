@@ -78,8 +78,11 @@ const App = () => {
 
   return (
     <Fragment>
-      <div style={{ textAlign: 'center', padding: '20px', fontSize: '24px' }}>
+      <div style={{ textAlign: 'center', fontSize: '24px', fontWeight: '600', padding: '15px' }}>
         Rate's Community Stats
+      </div>
+      <div style={{ textAlign: 'center', marginBottom: '20px', fontSize: '18px' }}>
+        Community Spotify Playlist #15 - Stream Stats (September 2023)
       </div>
 
       <div className="panels-container">
@@ -96,27 +99,29 @@ const App = () => {
           onChange={e => setSearchTerm(e.target.value)}
         />
       </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th onClick={() => handleSort('originalOrder')}>Order {sortedColumn === 'originalOrder' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-            <th onClick={() => handleSort('title')}>Title {sortedColumn === 'title' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-            <th onClick={() => handleSort('artist')}>Artist {sortedColumn === 'artist' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-            <th onClick={() => handleSort('added')}>Added {sortedColumn === 'added' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.originalOrder + 1}</td>
-              <td>{item.title}</td>
-              <td>{item.artist}</td>
-              <td>{item.added}</td>
+      <div style={{ overflowX: 'auto' }}>
+        <table>
+          <thead>
+            <tr>
+              <th onClick={() => handleSort('originalOrder')}>Order {sortedColumn === 'originalOrder' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
+              <th onClick={() => handleSort('artist')}>Artist {sortedColumn === 'artist' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
+              <th onClick={() => handleSort('title')}>Title {sortedColumn === 'title' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
+              <th onClick={() => handleSort('added')}>Added {sortedColumn === 'added' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.originalOrder + 1}</td>
+                <td>{item.artist}</td>
+                <td>{item.title}</td>
+                <td>{item.added}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
     </Fragment>
   );
 };

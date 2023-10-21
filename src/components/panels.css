@@ -1,18 +1,13 @@
-/* RightPanel.css (or wherever the styles for the RightPanel component reside) */
 .entry-header {
   display: flex;
   justify-content: space-between;
-  /* This will space the "added" value and the count apart */
   margin-bottom: 15px;
-  /* Adds space between entries */
 }
 
 .entry-list {
   margin-top: 10px;
-  /* Adds space between the header and the list */
 }
 
-/* LeftPanel.css */
 .added-entry {
   display: flex;
   align-items: center;
@@ -27,7 +22,6 @@
 
 .added-entry .added-label {
   margin-right: 5px;
-  /* Adjust as needed */
 }
 
 .added-name {
@@ -35,3 +29,10 @@
   font-size: 16px;
 }
 
+.left-panel {
+  margin-left: 5%;
+}
+
+.right-panel {
+  margin-right: 5%;
+}

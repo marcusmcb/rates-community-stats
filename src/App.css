@@ -13,47 +13,37 @@ body {
   justify-content: center;
   width: 100%;
   margin-bottom: 20px;
-  /* Adjust as needed */
 }
 
-/* Style for individual cards */
-/* Assuming DataCard is a div, otherwise adjust the selector */
+
 .cardRow>div {
   flex: 1;
-  /* Allows the cards to take up equal width */
   margin: 0 10px;
-  /* Adjust as needed */
 }
 
 .panels-container {
   display: flex;
-  gap: 20px; /* Adds space between the panels */
+  gap: 20px;
 }
 
 .panel {
-  padding: 20px; /* Adds padding to each panel */
-  border: 1px solid #ccc; /* Optional: A simple border for clarity */
-  /* flex: 1; Each panel will take half of the container's width */
+  padding: 20px;
+  border: 1px solid #ccc;
 }
 
 .left-panel {
   width: 30%;
-  /* adjust as needed */
   border: 1px solid #ccc;
   overflow-y: auto;
-  /* scrollable if content is long */
 }
 
 .right-panel {
   width: 65%;
-  /* adjust as needed */
   border: 1px solid #ccc;
   overflow-y: auto;
-  /* scrollable if content is long */
 }
 
 .added-entry {
-  padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -67,3 +57,36 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+th {
+  cursor: pointer;
+}
+
+th:nth-child(1) {
+  width: 5%;
+}
+
+th:nth-child(2),
+th:nth-child(3),
+th:nth-child(4) {
+  width: 31.66%;
+  /* Distribute the remaining space equally among these columns */
+}
