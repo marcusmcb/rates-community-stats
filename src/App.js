@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import Papa from 'papaparse';
-
 import DataCard from './components/DataCard';
 import './App.css';
 
@@ -21,7 +20,6 @@ const App = () => {
             skipEmptyLines: true,
             delimiter: ','
           });
-
           console.log(parsedData)
           const dataByAdded = processData(parsedData.data);
           console.log("PD: ", dataByAdded)
@@ -64,7 +62,6 @@ const App = () => {
       acc[added].push({ title, artist });
       return acc;
     }, {});
-
     return mappedData;
   };
 
@@ -73,19 +70,30 @@ const App = () => {
     item.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.added.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  const sortedDataEntries = Object.entries(processedData).sort((a, b) => b[1].length - a[1].length);
 
+  const sortedDataEntries = Object.entries(processedData).sort((a, b) => b[1].length - a[1].length);
 
   return (
     <Fragment>
       <div style={{ textAlign: 'center', padding: '20px', fontSize: '24px' }}>
         Rate's Community Stats
       </div>
-
-      {sortedDataEntries.map(([added, entries]) => (
-        <DataCard key={added} added={added} entries={entries} />
-      ))}
-
+      <div className="cardContainer">
+        {sortedDataEntries.map(([added, entries], index, arr) => {
+          // Render every two cards as a pair
+          if (index % 2 === 0) {
+            return (
+              <div key={added} className="cardRow">
+                <DataCard added={added} entries={entries} />
+                {arr[index + 1] && <DataCard added={arr[index + 1][0]} entries={arr[index + 1][1]} />}
+              </div>
+            );
+          }
+          // For odd indices, don't render anything (since we're already rendering them as part of the previous pair)
+          return null;
+        })}
+      </div>
+      
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '25px' }}>
         <input
           style={{ textAlign: 'center' }}

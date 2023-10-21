@@ -1,3 +1,23 @@
 body {
   font-family: 'Fira Sans', sans-serif;
 }
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+/* Style for individual cards */
+/* Assuming DataCard is a div, otherwise adjust the selector */
+.cardRow > div {
+  flex: 1; /* Allows the cards to take up equal width */
+  margin: 0 10px; /* Adjust as needed */
+}

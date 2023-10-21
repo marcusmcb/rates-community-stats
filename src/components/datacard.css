@@ -22,3 +22,9 @@ hr {
   margin: 15px 0;
   border-top: 1px solid #e0e0e0;
 }
+
+.arrow-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  /* or adjust as needed */
+}

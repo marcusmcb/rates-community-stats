@@ -1,14 +1,24 @@
-import "./datacard.css"
+import React, { useState } from "react";
+import "./datacard.css";
 
 const DataCard = ({ added, entries }) => {
+  const [showDetails, setShowDetails] = useState(false);
+
+  const toggleDetails = () => {
+    setShowDetails(!showDetails);
+  };
+
   return (
     <div className="data-card">
       <div className="card-header">
         <strong>{added}</strong>
-        <span>{entries.length}</span>
+        <span>{entries.length} songs</span>
+        <span className="arrow-icon" onClick={toggleDetails}>
+          {showDetails ? "↑" : "↓"}
+        </span>
       </div>
       <hr />
-      {entries.map((entry, idx) => (
+      {showDetails && entries.map((entry, idx) => (
         <div key={idx} className="entry">
           <div>{entry.title}</div>
           <div>{entry.artist}</div>
@@ -18,4 +28,4 @@ const DataCard = ({ added, entries }) => {
   );
 };
 
-export default DataCard
+export default DataCard;
