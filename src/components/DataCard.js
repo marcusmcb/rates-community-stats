@@ -12,15 +12,18 @@ const DataCard = ({ added, entries }) => {
     <div className="data-card">
       <div className="card-header">
         <strong>{added}</strong>
-        <span>{entries.length} songs</span>
+        {
+          entries.length === 1 ? (<span style={{ marginLeft: '10px' }}>({entries.length} song)</span>) : (<span style={{ marginLeft: '10px' }}>({entries.length} songs)</span>)
+        }
+
         <span className="arrow-icon" onClick={toggleDetails}>
           {showDetails ? "↑" : "↓"}
         </span>
       </div>
-      <hr />
+
       {showDetails && entries.map((entry, idx) => (
         <div key={idx} className="entry">
-          <div>{entry.title}</div>
+          <div style={{ fontWeight: '600', fontSize: '16px'}}>{entry.title} </div>
           <div>{entry.artist}</div>
         </div>
       ))}
