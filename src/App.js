@@ -3,6 +3,7 @@ import Papa from 'papaparse';
 import LeftPanel from './components/LeftPanel';
 import RightPanel from './components/RightPanel';
 import DataCard from './components/DataCard';
+import SongCard from './components/SongCard';
 import './App.css';
 
 const App = () => {
@@ -13,14 +14,13 @@ const App = () => {
   const [sortDirection, setSortDirection] = useState('asc');
   const [sortedColumn, setSortedColumn] = useState(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -36,17 +36,13 @@ const App = () => {
             skipEmptyLines: true,
             delimiter: ','
           });
-
           const dataByAdded = processData(parsedData.data);
           setProcessedData(dataByAdded);
           setData(parsedData.data.map((item, index) => ({ ...item, originalOrder: index })));
-
-          // Default to the top "added" value after processing
           const topAdded = Object.keys(dataByAdded).sort((a, b) => dataByAdded[b].length - dataByAdded[a].length)[0];
           setSelectedAdded(topAdded);
         });
     };
-
     fetchData();
   }, []);
 
@@ -93,31 +89,32 @@ const App = () => {
   return (
     <Fragment>
       <div style={{ textAlign: 'center', fontSize: '24px', fontWeight: '600', padding: '15px' }}>
-        Rate's Community Stats
+        <a href='https://www.twitch.tv/ratewonder' rel='noreferrer'
+          target='_blank' style={{ textDecoration: 'none' }}>Rate's Community Stats</a>
       </div>
       <div style={{ textAlign: 'center', marginBottom: '20px', fontSize: '18px' }}>
         Community Spotify Playlist #15 - Stream Stats (September 2023)
       </div>
 
       {windowWidth > 700 ? (
-        // For larger screens, show the panels and table
         <div>
           <div className="panels-container">
             <LeftPanel data={processedData} selectedAdded={selectedAdded} onSelect={setSelectedAdded} />
             <RightPanel data={processedData[selectedAdded] || []} />
           </div>
-          {/* ... existing table rendering code ... */}
         </div>
       ) : (
-        // For smaller screens, show the data cards
         Object.entries(processedData)
-          .sort((a, b) => b[1].length - a[1].length)  // Sort based on the number of songs
+          .sort((a, b) => b[1].length - a[1].length)
           .map(([added, entries]) => (
             <DataCard key={added} added={added} entries={entries} />
           ))
       )}
+      <div style={{ textAlign: 'center', fontSize: '24px', fontWeight: '600', padding: '15px' }}>
+        The Full Playlist
+      </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '25px', marginLeft: '5%', marginRight: '5%' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '20px', marginLeft: '5%', marginRight: '5%' }}>
         <input
           style={{ textAlign: 'center' }}
           type="text"
@@ -126,31 +123,63 @@ const App = () => {
           onChange={e => setSearchTerm(e.target.value)}
         />
       </div>
-      <div style={{ overflowX: 'auto', marginLeft: '5%', marginRight: '5%' }}>
-        <table>
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('originalOrder')}>Order {sortedColumn === 'originalOrder' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-              <th onClick={() => handleSort('artist')}>Artist {sortedColumn === 'artist' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-              <th onClick={() => handleSort('title')}>Title {sortedColumn === 'title' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-              <th onClick={() => handleSort('added')}>Added By {sortedColumn === 'added' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map((item, index) => (
-              <tr key={index}>
-                <td>{item.originalOrder + 1}</td>
-                <td>{item.artist}</td>
-                <td>{item.title}</td>
-                <td>{item.added}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
 
+      {
+        windowWidth > 700 ? (
+          filteredData.length > 0 ? (
+            <div style={{ overflowX: 'auto', marginLeft: '5%', marginRight: '5%' }}>
+              <table>
+                <thead>
+                  <tr>
+                    <th onClick={() => handleSort('originalOrder')}>Order {sortedColumn === 'originalOrder' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
+                    <th onClick={() => handleSort('artist')}>Artist {sortedColumn === 'artist' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
+                    <th onClick={() => handleSort('title')}>Title {sortedColumn === 'title' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
+                    <th onClick={() => handleSort('added')}>Added By {sortedColumn === 'added' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredData.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.originalOrder + 1}</td>
+                      <td>{item.artist}</td>
+                      <td>{item.title}</td>
+                      <td>{item.added}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center', marginTop: '10px' }}>
+              Sorry, but we can't find that.
+            </div>
+          )
+        ) : (
+          filteredData.length > 0 ? (
+            filteredData.map((item, index) => (
+              <SongCard
+                key={index}
+                title={item.title}
+                artist={item.artist}
+                added={item.added}
+                index={index}
+              />
+            ))
+          ) : (
+            <div style={{ textAlign: 'center', marginTop: '10px' }}>
+              Sorry, but we can't find that.
+            </div>
+          )
+        )
+      }
+      <div style={{ textAlign: 'center', fontSize: '12px', padding: '15px' }}>
+        <hr />
+        Built by <a href='https://www.mcbportfolio.com' rel='noreferrer'
+          target='_blank' style={{ textDecoration: 'none' }}>MCB</a>, {currentYear}
+      </div>
     </Fragment>
   );
+  ;
 };
 
 export default App;
