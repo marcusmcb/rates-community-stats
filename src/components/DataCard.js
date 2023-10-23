@@ -11,7 +11,7 @@ const DataCard = ({ added, entries }) => {
   return (
     <div className="data-card">
       <div className="card-header">
-        <strong>{added}</strong>
+        <strong style={{ color: 'khaki' }}>{added}</strong>
         {
           entries.length === 1 ? (<span style={{ marginLeft: '10px' }}>({entries.length} song)</span>) : (<span style={{ marginLeft: '10px' }}>({entries.length} songs)</span>)
         }
@@ -23,8 +23,8 @@ const DataCard = ({ added, entries }) => {
 
       {showDetails && entries.map((entry, idx) => (
         <div key={idx} className="entry">
-          <div style={{ fontWeight: '600', fontSize: '16px', color: 'khaki'}}>{entry.title} </div>
-          <div>{entry.artist}</div>
+          <div style={{ fontWeight: '600', fontSize: '16px'}}>{entry.title} </div>
+          <div style={{ color: 'bisque' }}>{entry.artist}</div>
         </div>
       ))}
     </div>

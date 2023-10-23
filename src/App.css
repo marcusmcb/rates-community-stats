@@ -71,6 +71,7 @@ table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
+  background-color: rgba(101, 101, 101, 0.509);
 }
 
 th,

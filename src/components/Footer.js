@@ -3,7 +3,7 @@ const Footer = () => {
 
 	return (
 		<div style={{ textAlign: 'center', fontSize: '12px', padding: '15px' }}>
-			<hr />
+			
 			Built by{' '}
 			<a
 				href='https://www.mcbportfolio.com'

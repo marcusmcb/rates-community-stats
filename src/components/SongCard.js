@@ -16,7 +16,7 @@ const SongCard = ({ title, artist, added, index }) => (
 		<div style={{ fontSize: '16px', marginTop: '2px' }}>{artist}</div>
 		<div style={{ fontSize: '13px', fontStyle: 'italic', marginTop: '5px' }}>
 			added by{' '}
-			<span style={{ fontStyle: 'italic', fontWeight: '600' }}>{added}</span>
+			<span style={{ fontStyle: 'italic', fontWeight: '600', color: 'bisque' }}>{added}</span>
 		</div>
 	</div>
 )
