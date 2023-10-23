@@ -23,7 +23,7 @@ const DataCard = ({ added, entries }) => {
 
       {showDetails && entries.map((entry, idx) => (
         <div key={idx} className="entry">
-          <div style={{ fontWeight: '600', fontSize: '16px'}}>{entry.title} </div>
+          <div style={{ fontWeight: '600', fontSize: '16px', color: 'khaki'}}>{entry.title} </div>
           <div>{entry.artist}</div>
         </div>
       ))}

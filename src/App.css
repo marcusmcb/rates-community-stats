@@ -1,5 +1,14 @@
 body {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;  
+}
+
+.main-app {
+  background-color: #2b2b2b;
+  color: white;
+}
+
+a:visited {
+  color: khaki
 }
 
 .cardContainer {
@@ -49,7 +58,8 @@ body {
 }
 
 .added-entry.selected {
-  background-color: #f5f5f5;
+  background-color: khaki;
+  color: black;
 }
 
 .entry {
@@ -89,4 +99,18 @@ th:nth-child(3),
 th:nth-child(4) {
   width: 31.66%;
   /* Distribute the remaining space equally among these columns */
+}
+
+.navbar-left {
+  flex: 1;
+  text-align: center;
+  margin-left: 5%;
+  margin-top: 35px;
+}
+
+.navbar-right {
+  flex: 1;
+  text-align: center;
+  margin-right: 5%;
+  margin-top: 35px;
 }
