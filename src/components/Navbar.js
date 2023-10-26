@@ -40,7 +40,7 @@ const Navbar = () => {
 					className='navbar-right'
 				>
 					<a
-						href='https://open.spotify.com/playlist/7BgAfdN1odTcG4xsYfZtCc'
+						href='https://spotify.link/LrydzpZo8Db'
 						rel='no_referrer'
 						target='_blank'
 						style={{ textDecoration: 'none' }}
@@ -56,7 +56,7 @@ const Navbar = () => {
 					marginBottom: '5px',
 				}}
 			>
-				Community Spotify Playlist #15
+				Community Spotify Playlist #16
 			</div>
 			<div
 				style={{
@@ -65,7 +65,7 @@ const Navbar = () => {
 					marginBottom: '15px',
 				}}
 			>
-				Stream Stats (September 2023)
+				Stream Stats (October 2023)
 			</div>
 		</Fragment>
 	)

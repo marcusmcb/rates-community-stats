@@ -30,14 +30,15 @@ const App = () => {
 
 	useEffect(() => {
 		const fetchData = () => {
-			fetch('/data/rate_wonder_spotify_stream_september.csv')
+			fetch('/data/rate_wonder_spotify_stream_october.csv')
 				.then((response) => response.text())
-				.then((data) => {
+				.then((data) => {					
 					const parsedData = Papa.parse(data, {
 						header: true,
 						skipEmptyLines: true,
 						delimiter: ',',
 					})
+					console.log(parsedData)
 					const dataByAdded = processData(parsedData.data)
 					setProcessedData(dataByAdded)
 					setData(
