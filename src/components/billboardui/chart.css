@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'BillboardFont';
+  src: url('../../fonts/Bunya-Bold_PERSONAL.ttf') format('ttf');       
+  font-weight: normal;
+  font-style: normal;
+}
+
+.billboard-header {
+  font-family: 'BillboardFont', sans-serif !important;  
+}

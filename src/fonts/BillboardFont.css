@@ -1,0 +1,66 @@
+/* In a file like src/fonts/MyCustomFont.css */
+
+@font-face {
+	font-family: 'MyCustomFont';
+	src: url('./Bunya-Regular_PERSONAL.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.billboard-header {
+	font-family: 'MyCustomFont', sans-serif !important;
+
+	font-size: 2rem;
+	font-weight: bold;
+	color: red;
+}
+
+.billboard-header-label {
+	font-size: 0.9rem;
+	font-weight: bold;
+}
+
+.header-row {
+	display: flex;
+	border: solid 1px black;	
+	padding: 15px;
+	margin: 0px 20px 0px 20px;
+}
+
+.chart-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px;
+	border-left: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.entry-name {
+	text-align: left;
+	flex: 1; /* This will allow the entry name to take up as much space as possible, pushing the entry length to the right */
+}
+
+.entry-length {
+	text-align: right;
+	white-space: nowrap; /* Prevents wrapping of the content */
+}
+
+.spotify-blurb {
+	margin-top: 25px;
+	margin-left: 25px;
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+.chart-body {
+	padding: 0px 20px 0px 20px;
+	font-size: 1rem;
+}
+
+.spotify-title {
+	color: red;
+	font-size: 3rem;
+	font-weight: bold;
+  margin-left: 25px;
+}

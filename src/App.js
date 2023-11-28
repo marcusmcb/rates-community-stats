@@ -6,6 +6,7 @@ import DataCard from './components/DataCard'
 import SongCard from './components/SongCard'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import BillboardChart from './components/billboardui/chart'
 
 import './App.css'
 
@@ -99,7 +100,8 @@ const App = () => {
 
 	return (
 		<Fragment>
-			<div className='main-app'>				
+			<BillboardChart/>
+			{/* <div className='main-app'>				
         <Navbar/>
 				{windowWidth > 860 ? (
 					<div>
@@ -226,7 +228,7 @@ const App = () => {
 					</div>
 				)}
 				<Footer/>
-			</div>
+			</div> */}
 		</Fragment>
 	)
 }
