@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
 
-const Navbar = () => {
+const Navbar = ({ selectedPlaylist }) => {
 	return (
 		<Fragment>
 			<div
@@ -66,7 +66,7 @@ const Navbar = () => {
 					marginBottom: '15px',
 				}}
 			>
-				Stream Stats (October 2023)
+				Stream Stats ({selectedPlaylist} 2023)
 			</div>
 		</Fragment>
 	)

@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import './panels.css'
 
-const LeftPanel = ({ data, selectedAdded, onSelect }) => {
+const LeftPanel = ({
+	data,
+	selectedAdded,
+	onSelect,
+	selectedPlaylist,
+	onPlaylistChange,
+}) => {
 	const [searchTerm, setSearchTerm] = useState('')
 
 	const totalSongs = Object.values(data).reduce(
@@ -15,6 +21,19 @@ const LeftPanel = ({ data, selectedAdded, onSelect }) => {
 
 	return (
 		<div className='left-panel panel'>
+			<select
+				value={selectedPlaylist}
+				onChange={(e) => onPlaylistChange(e.target.value)}
+				style={{
+					width: '100%',
+					padding: '5px',
+					margin: '5px 0 15px 0',
+					boxSizing: 'border-box',
+				}}
+			>
+				<option value='October'>October 2023 Playlist</option>
+				<option value='September'>September 2023 Playlist</option>
+			</select>
 			<input
 				type='text'
 				placeholder='Search by Spotify screen-name'

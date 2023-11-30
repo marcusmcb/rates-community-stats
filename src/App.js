@@ -20,6 +20,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+	const [selectedPlaylist, setSelectedPlaylist] = useState('October')
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -32,8 +33,8 @@ const App = () => {
 	}, [])
 
 	useEffect(() => {
-		const fetchData = () => {
-			fetch('/data/rate_wonder_spotify_stream_october.csv')
+		const fetchData = (playlist) => {
+			fetch(`/data/rate_wonder_spotify_stream_${playlist.toLowerCase()}.csv`)
 				.then((response) => response.text())
 				.then((data) => {
 					const parsedData = Papa.parse(data, {
@@ -56,8 +57,8 @@ const App = () => {
 					setSelectedAdded(topAdded)
 				})
 		}
-		fetchData()
-	}, [])
+		fetchData(selectedPlaylist)
+	}, [selectedPlaylist])
 
 	const createSpotifyLink = (artist, title) => {
 		const queryString = encodeURIComponent(`${artist} ${title}`)
@@ -109,7 +110,7 @@ const App = () => {
 		<Fragment>
 			{/* <BillboardChart/> */}
 			<div className='main-app'>
-				<Navbar />
+				<Navbar selectedPlaylist={selectedPlaylist}/>
 				{windowWidth > 860 ? (
 					<div>
 						<div className='panels-container'>
@@ -117,16 +118,43 @@ const App = () => {
 								data={processedData}
 								selectedAdded={selectedAdded}
 								onSelect={setSelectedAdded}
+								selectedPlaylist={selectedPlaylist}
+								onPlaylistChange={setSelectedPlaylist}
 							/>
 							<RightPanel data={processedData[selectedAdded] || []} />
 						</div>
 					</div>
 				) : (
-					Object.entries(processedData)
-						.sort((a, b) => b[1].length - a[1].length)
-						.map(([added, entries]) => (
-							<DataCard key={added} added={added} entries={entries} />
-						))
+					<div>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+							}}
+						>
+							<select
+								value={selectedPlaylist}
+								onChange={(e) => setSelectedPlaylist(e.target.value)}
+								style={{
+									padding: '5px',
+									marginLeft: '5px',
+									marginBottom: '5px',
+									boxSizing: 'border-box',
+									width: '70%',
+								}}
+							>
+								<option value='October'>October 2023 Playlist</option>
+								<option value='September'>September 2023 Playlist</option>
+							</select>
+						</div>
+
+						{Object.entries(processedData)
+							.sort((a, b) => b[1].length - a[1].length)
+							.map(([added, entries]) => (
+								<DataCard key={added} added={added} entries={entries} />
+							))}
+					</div>
 				)}
 				<div
 					style={{
