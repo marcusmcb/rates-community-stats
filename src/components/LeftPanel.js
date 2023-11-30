@@ -4,6 +4,11 @@ import './panels.css'
 const LeftPanel = ({ data, selectedAdded, onSelect }) => {
 	const [searchTerm, setSearchTerm] = useState('')
 
+	const totalSongs = Object.values(data).reduce(
+		(total, entries) => total + entries.length,
+		0
+	)
+
 	const sortedDataEntries = Object.entries(data)
 		.sort((a, b) => b[1].length - a[1].length)
 		.filter(([added]) => added.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -23,22 +28,24 @@ const LeftPanel = ({ data, selectedAdded, onSelect }) => {
 				}}
 			/>
 			{sortedDataEntries.length > 0 ? (
-				sortedDataEntries.map(([added, entries]) => (
-					<div
-						key={added}
-						className={`added-entry ${
-							added === selectedAdded ? 'selected' : ''
-						}`}
-						onClick={() => onSelect(added)}
-					>
-						<div className='added-label added-name'>{added}</div>
-						{entries.length === 1 ? (
-							<div>({entries.length} song)</div>
-						) : (
-							<div>({entries.length} songs)</div>
-						)}
-					</div>
-				))
+				sortedDataEntries.map(([added, entries]) => {
+					const percentage = ((entries.length / totalSongs) * 100).toFixed(2)
+					return (
+						<div
+							key={added}
+							className={`added-entry ${
+								added === selectedAdded ? 'selected' : ''
+							}`}
+							onClick={() => onSelect(added)}
+						>
+							<div className='added-label added-name'>{added}</div>
+							<div>
+								{entries.length} song{entries.length !== 1 ? 's' : ''}
+								{/* <span> ({percentage}%)</span> */}
+							</div>
+						</div>
+					)
+				})
 			) : (
 				<div style={{ textAlign: 'center', marginTop: '20px' }}>
 					No matches found.

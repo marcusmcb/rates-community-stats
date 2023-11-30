@@ -6,7 +6,9 @@ import DataCard from './components/DataCard'
 import SongCard from './components/SongCard'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import BillboardChart from './components/billboardui/chart'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
+// import BillboardChart from './components/billboardui/chart'
 
 import './App.css'
 
@@ -17,7 +19,7 @@ const App = () => {
 	const [selectedAdded, setSelectedAdded] = useState(null)
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
-	const [windowWidth, setWindowWidth] = useState(window.innerWidth)	
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -33,7 +35,7 @@ const App = () => {
 		const fetchData = () => {
 			fetch('/data/rate_wonder_spotify_stream_october.csv')
 				.then((response) => response.text())
-				.then((data) => {					
+				.then((data) => {
 					const parsedData = Papa.parse(data, {
 						header: true,
 						skipEmptyLines: true,
@@ -56,6 +58,11 @@ const App = () => {
 		}
 		fetchData()
 	}, [])
+
+	const createSpotifyLink = (artist, title) => {
+		const queryString = encodeURIComponent(`${artist} ${title}`)
+		return `https://open.spotify.com/search/${queryString}`
+	}
 
 	const handleSort = (columnName) => {
 		let sortedData = [...data]
@@ -100,9 +107,9 @@ const App = () => {
 
 	return (
 		<Fragment>
-			<BillboardChart/>
-			{/* <div className='main-app'>				
-        <Navbar/>
+			{/* <BillboardChart/> */}
+			<div className='main-app'>
+				<Navbar />
 				{windowWidth > 860 ? (
 					<div>
 						<div className='panels-container'>
@@ -127,7 +134,7 @@ const App = () => {
 						fontSize: '28px',
 						fontWeight: '600',
 						padding: '30px',
-            color: 'khaki'
+						color: 'khaki',
 					}}
 				>
 					The Full Playlist
@@ -149,7 +156,6 @@ const App = () => {
 						placeholder='Search by title, artist, or Spotify screen-name'
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
-            
 					/>
 				</div>
 
@@ -161,7 +167,10 @@ const App = () => {
 							<table>
 								<thead>
 									<tr>
-										<th onClick={() => handleSort('originalOrder')} style={{ color: 'khaki'}}>
+										<th
+											onClick={() => handleSort('originalOrder')}
+											style={{ color: 'khaki' }}
+										>
 											Order{' '}
 											{sortedColumn === 'originalOrder'
 												? sortDirection === 'asc'
@@ -169,7 +178,10 @@ const App = () => {
 													: '↓'
 												: ''}
 										</th>
-										<th onClick={() => handleSort('artist')} style={{ color: 'khaki'}}>
+										<th
+											onClick={() => handleSort('artist')}
+											style={{ color: 'khaki' }}
+										>
 											Artist{' '}
 											{sortedColumn === 'artist'
 												? sortDirection === 'asc'
@@ -177,7 +189,10 @@ const App = () => {
 													: '↓'
 												: ''}
 										</th>
-										<th onClick={() => handleSort('title')} style={{ color: 'khaki'}}>
+										<th
+											onClick={() => handleSort('title')}
+											style={{ color: 'khaki' }}
+										>
 											Title{' '}
 											{sortedColumn === 'title'
 												? sortDirection === 'asc'
@@ -185,7 +200,10 @@ const App = () => {
 													: '↓'
 												: ''}
 										</th>
-										<th onClick={() => handleSort('added')} style={{ color: 'khaki'}}>
+										<th
+											onClick={() => handleSort('added')}
+											style={{ color: 'khaki' }}
+										>
 											Added By{' '}
 											{sortedColumn === 'added'
 												? sortDirection === 'asc'
@@ -200,7 +218,24 @@ const App = () => {
 										<tr key={index}>
 											<td>{item.originalOrder + 1}</td>
 											<td>{item.artist}</td>
-											<td>{item.title}</td>
+											<td>
+												<a
+													href={createSpotifyLink(item.artist, item.title)}
+													target='_blank'
+													rel='noopener noreferrer'
+													style={{ color: 'inherit', textDecoration: 'none' }}
+												>
+													{item.title}
+													<FontAwesomeIcon
+														icon={faHeadphones}
+														style={{
+															marginLeft: '10px',
+															color: 'khaki',
+															fontSize: '13px',
+														}}
+													/>
+												</a>
+											</td>
 											<td>{item.added}</td>
 										</tr>
 									))}
@@ -227,17 +262,14 @@ const App = () => {
 						Sorry, but we can't find that.
 					</div>
 				)}
-				<Footer/>
-			</div> */}
+				<Footer />
+			</div>
 		</Fragment>
 	)
 }
 
 export default App
 
-// add link to original community Spotify playlist near main page title
-// add individual links on songs to Spotify search results
 // add responsive layout for main page components
-// add link to rate's twitch channel
 // add playlist percentages for each viewer's picks
 // apply same left/right margins to table component as panel components

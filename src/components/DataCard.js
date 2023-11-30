@@ -1,34 +1,63 @@
-import React, { useState } from "react";
-import "./datacard.css";
+import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import './datacard.css'
 
 const DataCard = ({ added, entries }) => {
-  const [showDetails, setShowDetails] = useState(false);
+	const [showDetails, setShowDetails] = useState(false)
 
-  const toggleDetails = () => {
-    setShowDetails(!showDetails);
-  };
+	const toggleDetails = () => {
+		setShowDetails(!showDetails)
+	}
 
-  return (
-    <div className="data-card">
-      <div className="card-header">
-        <strong style={{ color: 'khaki' }}>{added}</strong>
-        {
-          entries.length === 1 ? (<span style={{ marginLeft: '10px' }}>({entries.length} song)</span>) : (<span style={{ marginLeft: '10px' }}>({entries.length} songs)</span>)
-        }
+	// Function to create Spotify search URL
+	const createSpotifyLink = (artist, title) => {
+		const queryString = encodeURIComponent(`${artist} ${title}`)
+		return `https://open.spotify.com/search/${queryString}`
+	}
 
-        <span className="arrow-icon" onClick={toggleDetails}>
-          {showDetails ? "↑" : "↓"}
-        </span>
-      </div>
+	return (
+		<div className='data-card'>
+			<div className='card-header'>
+				<strong style={{ color: 'khaki' }}>{added}</strong>
+				{entries.length === 1 ? (
+					<span style={{ marginLeft: '10px' }}>({entries.length} song)</span>
+				) : (
+					<span style={{ marginLeft: '10px' }}>({entries.length} songs)</span>
+				)}
 
-      {showDetails && entries.map((entry, idx) => (
-        <div key={idx} className="entry">
-          <div style={{ fontWeight: '600', fontSize: '16px'}}>{entry.title} </div>
-          <div style={{ color: 'bisque' }}>{entry.artist}</div>
-        </div>
-      ))}
-    </div>
-  );
-};
+				<span className='arrow-icon' onClick={toggleDetails}>
+					{showDetails ? '↑' : '↓'}
+				</span>
+			</div>
 
-export default DataCard;
+			{showDetails &&
+				entries.map((entry, idx) => (
+					<div key={idx} className='entry'>
+						<div style={{ fontWeight: '600', fontSize: '16px' }}>
+							{/* Updated the title to include a link */}
+							<a
+								href={createSpotifyLink(entry.artist, entry.title)}
+								target='_blank'
+								rel='noopener noreferrer'
+								style={{ color: 'inherit', textDecoration: 'none' }}
+							>
+								{entry.title}
+								<FontAwesomeIcon
+									icon={faHeadphones}
+									style={{
+										marginLeft: '10px',
+										color: 'khaki',
+										fontSize: '13px',
+									}}
+								/>
+							</a>
+						</div>
+						<div style={{ color: 'bisque' }}>{entry.artist}</div>
+					</div>
+				))}
+		</div>
+	)
+}
+
+export default DataCard

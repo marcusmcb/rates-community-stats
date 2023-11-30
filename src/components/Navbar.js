@@ -20,7 +20,8 @@ const Navbar = () => {
 						href='https://twitch.tv/ratewonder'
 						rel='noreferrer'
 						target='_blank'
-						style={{ textDecoration: 'none' }}
+						style={{ textDecoration: 'none', color: 'khaki' }}
+						
 					>
 						<FontAwesomeIcon icon={faTwitch} size='2x' />
 					</a>
@@ -43,7 +44,7 @@ const Navbar = () => {
 						href='https://spotify.link/LrydzpZo8Db'
 						rel='no_referrer'
 						target='_blank'
-						style={{ textDecoration: 'none' }}
+						style={{ textDecoration: 'none', color: 'khaki' }}
 					>
 						<FontAwesomeIcon icon={faSpotify} size='2x' />
 					</a>
