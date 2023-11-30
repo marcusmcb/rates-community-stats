@@ -110,7 +110,7 @@ const App = () => {
 		<Fragment>
 			{/* <BillboardChart/> */}
 			<div className='main-app'>
-				<Navbar selectedPlaylist={selectedPlaylist}/>
+				<Navbar selectedPlaylist={selectedPlaylist} />
 				{windowWidth > 860 ? (
 					<div>
 						<div className='panels-container'>
@@ -142,6 +142,7 @@ const App = () => {
 									marginBottom: '5px',
 									boxSizing: 'border-box',
 									width: '70%',
+									fontFamily: 'Fira Sans'
 								}}
 							>
 								<option value='October'>October 2023 Playlist</option>
@@ -179,7 +180,7 @@ const App = () => {
 					}}
 				>
 					<input
-						style={{ textAlign: 'center', width: '50%', height: '20px' }}
+						style={{ textAlign: 'center', width: '50%', height: '20px', fontFamily: 'Fira Sans' }}
 						type='text'
 						placeholder='Search by title, artist, or Spotify screen-name'
 						value={searchTerm}

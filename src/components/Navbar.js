@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
 
 const Navbar = ({ selectedPlaylist }) => {
+	const playlistNumber = selectedPlaylist === 'October' ? '#16' : '#15'
 	return (
 		<Fragment>
 			<div
@@ -21,7 +22,7 @@ const Navbar = ({ selectedPlaylist }) => {
 						rel='noreferrer'
 						target='_blank'
 						style={{ textDecoration: 'none', color: 'khaki' }}
-						
+
 					>
 						<FontAwesomeIcon icon={faTwitch} size='2x' />
 					</a>
@@ -32,7 +33,7 @@ const Navbar = ({ selectedPlaylist }) => {
 						textAlign: 'center',
 						fontSize: '30px',
 						fontWeight: '600',
-            padding: '10px'
+						padding: '10px'
 					}}
 				>
 					Rate's Community Stats
@@ -57,7 +58,7 @@ const Navbar = ({ selectedPlaylist }) => {
 					marginBottom: '5px',
 				}}
 			>
-				Community Spotify Playlist #16
+				Community Spotify Playlist {playlistNumber}
 			</div>
 			<div
 				style={{

@@ -29,6 +29,7 @@ const LeftPanel = ({
 					padding: '5px',
 					margin: '5px 0 15px 0',
 					boxSizing: 'border-box',
+					fontFamily: 'Fira Sans'
 				}}
 			>
 				<option value='October'>October 2023 Playlist</option>
@@ -44,6 +45,7 @@ const LeftPanel = ({
 					padding: '5px',
 					margin: '5px 0 15px 0',
 					boxSizing: 'border-box',
+					fontFamily: 'Fira Sans'
 				}}
 			/>
 			{sortedDataEntries.length > 0 ? (
