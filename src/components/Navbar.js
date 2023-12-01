@@ -3,7 +3,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
 
 const Navbar = ({ selectedPlaylist }) => {
-	const playlistNumber = selectedPlaylist === 'October' ? '#16' : '#15'
+	// const playlistNumber = selectedPlaylist === 'October' ? '#16' : '#15'
+	let playlistNumber
+
+	switch (selectedPlaylist) {
+		case 'November':
+			playlistNumber = '#17'
+			break
+		case 'October':
+			playlistNumber = '#16'
+			break
+		case 'September':
+			playlistNumber = '#15'
+			break
+		default:
+			playlistNumber = 'Unknown'
+			break
+	}
 	return (
 		<Fragment>
 			<div
@@ -14,15 +30,12 @@ const Navbar = ({ selectedPlaylist }) => {
 					marginTop: '15px',
 				}}
 			>
-				<div
-					className='navbar-left'
-				>
+				<div className='navbar-left'>
 					<a
 						href='https://twitch.tv/ratewonder'
 						rel='noreferrer'
 						target='_blank'
 						style={{ textDecoration: 'none', color: 'khaki' }}
-
 					>
 						<FontAwesomeIcon icon={faTwitch} size='2x' />
 					</a>
@@ -33,14 +46,12 @@ const Navbar = ({ selectedPlaylist }) => {
 						textAlign: 'center',
 						fontSize: '30px',
 						fontWeight: '600',
-						padding: '10px'
+						padding: '10px',
 					}}
 				>
 					Rate's Community Stats
 				</div>
-				<div
-					className='navbar-right'
-				>
+				<div className='navbar-right'>
 					<a
 						href='https://spotify.link/LrydzpZo8Db'
 						rel='no_referrer'
