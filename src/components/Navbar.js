@@ -35,7 +35,7 @@ const Navbar = ({ selectedPlaylist }) => {
 						href='https://twitch.tv/ratewonder'
 						rel='noreferrer'
 						target='_blank'
-						style={{ textDecoration: 'none', color: 'khaki' }}
+						style={{ textDecoration: 'none', color: 'rgb(81, 206, 78)' }}
 					>
 						<FontAwesomeIcon icon={faTwitch} size='2x' />
 					</a>
@@ -53,10 +53,10 @@ const Navbar = ({ selectedPlaylist }) => {
 				</div>
 				<div className='navbar-right'>
 					<a
-						href='https://spotify.link/LrydzpZo8Db'
+						href='https://open.spotify.com/user/djrate'
 						rel='no_referrer'
 						target='_blank'
-						style={{ textDecoration: 'none', color: 'khaki' }}
+						style={{ textDecoration: 'none', color: '#ff5050' }}
 					>
 						<FontAwesomeIcon icon={faSpotify} size='2x' />
 					</a>

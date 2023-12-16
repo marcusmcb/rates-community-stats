@@ -7,8 +7,9 @@ body {
   color: white;  
 }
 
+a,
 a:visited {
-  color: khaki
+  color: white;
 }
 
 .cardContainer {
@@ -58,8 +59,7 @@ a:visited {
 }
 
 .added-entry.selected {
-  background-color: khaki;
-  color: black;
+  background-color: #ff5050;  
 }
 
 .entry {

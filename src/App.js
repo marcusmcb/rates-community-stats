@@ -164,7 +164,7 @@ const App = () => {
 						fontSize: '28px',
 						fontWeight: '600',
 						padding: '30px',
-						color: 'khaki',
+						color: 'rgb(81, 206, 78)',
 					}}
 				>
 					The Full Playlist
@@ -199,7 +199,7 @@ const App = () => {
 									<tr>
 										<th
 											onClick={() => handleSort('originalOrder')}
-											style={{ color: 'khaki' }}
+											style={{ color: 'rgb(81, 206, 78);' }}
 										>
 											Order{' '}
 											{sortedColumn === 'originalOrder'
@@ -210,7 +210,7 @@ const App = () => {
 										</th>
 										<th
 											onClick={() => handleSort('artist')}
-											style={{ color: 'khaki' }}
+											style={{ color: 'rgb(81, 206, 78)' }}
 										>
 											Artist{' '}
 											{sortedColumn === 'artist'
@@ -221,7 +221,7 @@ const App = () => {
 										</th>
 										<th
 											onClick={() => handleSort('title')}
-											style={{ color: 'khaki' }}
+											style={{ color: 'rgb(81, 206, 78)' }}
 										>
 											Title{' '}
 											{sortedColumn === 'title'
@@ -232,7 +232,7 @@ const App = () => {
 										</th>
 										<th
 											onClick={() => handleSort('added')}
-											style={{ color: 'khaki' }}
+											style={{ color: 'rgb(81, 206, 78)' }}
 										>
 											Added By{' '}
 											{sortedColumn === 'added'
@@ -260,7 +260,7 @@ const App = () => {
 														icon={faHeadphones}
 														style={{
 															marginLeft: '10px',
-															color: 'khaki',
+															color: '#ff5050',
 															fontSize: '13px',
 														}}
 													/>

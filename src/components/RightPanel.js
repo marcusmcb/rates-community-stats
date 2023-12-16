@@ -20,18 +20,17 @@ const RightPanel = ({ data }) => {
 						rel='noopener noreferrer'
 						style={{
 							fontWeight: '600',
-							fontSize: '18px',
-							color: 'khaki',
+							fontSize: '18px',							
 							textDecoration: 'none',
 						}}
 					>
 						{entry.title}
 						<FontAwesomeIcon
 							icon={faHeadphones}
-							style={{ marginLeft: '10px', color: 'white', fontSize: '15px' }}
+							style={{ marginLeft: '10px', color: '#ff5050', fontSize: '15px' }}
 						/>
 					</a>
-					<div style={{ fontSize: '16px' }}>{entry.artist}</div>
+					<div style={{ fontSize: '16px', color: 'rgb(81, 206, 78)' }}>{entry.artist}</div>
 				</div>
 			))}
 		</div>
