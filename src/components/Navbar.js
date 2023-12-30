@@ -81,7 +81,7 @@ const Navbar = ({ selectedPlaylist }) => {
 					marginBottom: '15px',
 				}}
 			>
-				Stream Stats ({selectedPlaylist} 2023)
+				Playlist Stats ({selectedPlaylist} 2023)
 			</div>
 		</Fragment>
 	)
