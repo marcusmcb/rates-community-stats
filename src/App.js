@@ -20,7 +20,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('November')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('December')
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -145,6 +145,7 @@ const App = () => {
 									fontFamily: 'Fira Sans'
 								}}
 							>
+								<option value='December'>December 2023 Playlist</option>
 								<option value='November'>November 2023 Playlist</option>
 								<option value='October'>October 2023 Playlist</option>
 								<option value='September'>September 2023 Playlist</option>
@@ -199,7 +200,7 @@ const App = () => {
 									<tr>
 										<th
 											onClick={() => handleSort('originalOrder')}
-											style={{ color: 'rgb(81, 206, 78);' }}
+											style={{ color: 'rgb(81, 206, 78)' }}
 										>
 											Order{' '}
 											{sortedColumn === 'originalOrder'

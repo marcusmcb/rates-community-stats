@@ -32,6 +32,7 @@ const LeftPanel = ({
 					fontFamily: 'Fira Sans'
 				}}
 			>
+				<option value='December'>December 2023 Playlist</option>
 				<option value='November'>November 2023 Playlist</option>
 				<option value='October'>October 2023 Playlist</option>
 				<option value='September'>September 2023 Playlist</option>
