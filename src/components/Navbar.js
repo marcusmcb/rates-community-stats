@@ -29,8 +29,7 @@ const Navbar = ({ selectedPlaylist }) => {
 				style={{
 					display: 'flex',
 					alignItems: 'center',
-					justifyContent: 'center',
-					marginTop: '15px',
+					justifyContent: 'center',					
 				}}
 			>
 				<div className='navbar-left'>
@@ -38,7 +37,7 @@ const Navbar = ({ selectedPlaylist }) => {
 						href='https://twitch.tv/ratewonder'
 						rel='noreferrer'
 						target='_blank'
-						style={{ textDecoration: 'none', color: 'rgb(81, 206, 78)' }}
+						style={{ textDecoration: 'none', color: 'rgb(80, 255, 251)' }}
 					>
 						<FontAwesomeIcon icon={faTwitch} size='2x' />
 					</a>
@@ -59,7 +58,7 @@ const Navbar = ({ selectedPlaylist }) => {
 						href='https://open.spotify.com/user/djrate'
 						rel='no_referrer'
 						target='_blank'
-						style={{ textDecoration: 'none', color: '#ff5050' }}
+						style={{ textDecoration: 'none', color: 'rgb(80, 255, 251' }}
 					>
 						<FontAwesomeIcon icon={faSpotify} size='2x' />
 					</a>

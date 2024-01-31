@@ -59,7 +59,8 @@ a:visited {
 }
 
 .added-entry.selected {
-  background-color: #ff5050;  
+  background-color: rgb(80, 229, 255);  
+  color: black;
 }
 
 .entry {

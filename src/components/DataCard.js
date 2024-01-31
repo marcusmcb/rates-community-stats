@@ -19,14 +19,14 @@ const DataCard = ({ added, entries }) => {
 	return (
 		<div className='data-card'>
 			<div className='card-header'>
-				<strong style={{ color: '#ff5050' }}>{added}</strong>
+				<strong style={{ color: 'rgb(80, 255, 251)' }}>{added}</strong>
 				{entries.length === 1 ? (
 					<span style={{ marginLeft: '10px' }}>({entries.length} song)</span>
 				) : (
 					<span style={{ marginLeft: '10px' }}>({entries.length} songs)</span>
 				)}
 
-				<span className='arrow-icon' style={{ color: 'rgb(81, 206, 78)'}} onClick={toggleDetails}>
+				<span className='arrow-icon' style={{ color: 'rgb(78, 146, 206)'}} onClick={toggleDetails}>
 					{showDetails ? '↑' : '↓'}
 				</span>
 			</div>
@@ -47,13 +47,13 @@ const DataCard = ({ added, entries }) => {
 									icon={faHeadphones}
 									style={{
 										marginLeft: '10px',
-										color: '#ff5050',
+										color: 'rgb(80, 255, 251)',
 										fontSize: '13px',
 									}}
 								/>
 							</a>
 						</div>
-						<div style={{ color: 'rgb(81, 206, 78)' }}>{entry.artist}</div>
+						<div style={{ color: 'rgb(78, 146, 206)' }}>{entry.artist}</div>
 					</div>
 				))}
 		</div>
