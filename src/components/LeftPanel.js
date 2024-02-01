@@ -32,6 +32,7 @@ const LeftPanel = ({
 					fontFamily: 'Fira Sans'
 				}}
 			>
+				<option value='January'>January 2024 Playlist</option>
 				<option value='December'>December 2023 Playlist</option>
 				<option value='November'>November 2023 Playlist</option>
 				<option value='October'>October 2023 Playlist</option>
@@ -62,7 +63,9 @@ const LeftPanel = ({
 							onClick={() => onSelect(added)}
 						>
 							<div className='added-label added-name'>{added}</div>
-							<div>
+							<div className={`songs-text-main ${
+								added === selectedAdded ? 'selected' : ''
+							}`}>
 								{entries.length} song{entries.length !== 1 ? 's' : ''}
 								{/* <span> ({percentage}%)</span> */}
 							</div>

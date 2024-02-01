@@ -4,20 +4,28 @@ import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
 
 const Navbar = ({ selectedPlaylist }) => {
 	// const playlistNumber = selectedPlaylist === 'October' ? '#16' : '#15'
-	let playlistNumber
+	let playlistNumber, playlistYear
 
 	switch (selectedPlaylist) {
+		case 'January':
+			playlistNumber = '#19'
+			playlistYear = '2024'
+			break
 		case 'December':
 			playlistNumber = '#18'
+			playlistYear = '2023'
 			break
 		case 'November':
 			playlistNumber = '#17'
+			playlistYear = '2023'
 			break
 		case 'October':
 			playlistNumber = '#16'
+			playlistYear = '2023'
 			break
 		case 'September':
 			playlistNumber = '#15'
+			playlistYear = '2023'
 			break
 		default:
 			playlistNumber = 'Unknown'
@@ -78,9 +86,10 @@ const Navbar = ({ selectedPlaylist }) => {
 					textAlign: 'center',
 					fontSize: '18px',
 					marginBottom: '15px',
+					color: 'lightgray'
 				}}
 			>
-				Playlist Stats ({selectedPlaylist} 2023)
+				Playlist Stats ({selectedPlaylist} {playlistYear})
 			</div>
 		</Fragment>
 	)

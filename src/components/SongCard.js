@@ -20,7 +20,7 @@ const SongCard = ({ title, artist, added, index }) => {
 		>
 			<div style={{ fontSize: '18px' }}>
 				<strong
-					style={{ color: '#ff9494'}}
+					style={{ color: 'rgb(80, 255, 251)'}}
 				>
 					{index + 1}.
 					<a

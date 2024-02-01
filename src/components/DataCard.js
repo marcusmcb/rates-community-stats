@@ -19,11 +19,11 @@ const DataCard = ({ added, entries }) => {
 	return (
 		<div className='data-card'>
 			<div className='card-header'>
-				<strong style={{ color: 'rgb(80, 255, 251)' }}>{added}</strong>
+				<strong>{added}</strong>
 				{entries.length === 1 ? (
 					<span style={{ marginLeft: '10px' }}>({entries.length} song)</span>
 				) : (
-					<span style={{ marginLeft: '10px' }}>({entries.length} songs)</span>
+					<span className="songs-text" style={{ marginLeft: '10px' }}>({entries.length} songs)</span>
 				)}
 
 				<span className='arrow-icon' style={{ color: 'rgb(78, 146, 206)'}} onClick={toggleDetails}>

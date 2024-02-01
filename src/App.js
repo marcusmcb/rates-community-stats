@@ -20,7 +20,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('December')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('January')
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -145,6 +145,7 @@ const App = () => {
 									fontFamily: 'Fira Sans'
 								}}
 							>
+								<option value='January'>January 2024 Playlist</option>
 								<option value='December'>December 2023 Playlist</option>
 								<option value='November'>November 2023 Playlist</option>
 								<option value='October'>October 2023 Playlist</option>
