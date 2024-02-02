@@ -64,7 +64,7 @@ const Navbar = ({ selectedPlaylist }) => {
 				<div className='navbar-right'>
 					<a
 						href='https://open.spotify.com/user/djrate'
-						rel='no_referrer'
+						rel='noreferrer'
 						target='_blank'
 						style={{ textDecoration: 'none', color: 'rgb(80, 255, 251' }}
 					>

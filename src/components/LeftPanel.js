@@ -53,7 +53,7 @@ const LeftPanel = ({
 			/>
 			{sortedDataEntries.length > 0 ? (
 				sortedDataEntries.map(([added, entries]) => {
-					const percentage = ((entries.length / totalSongs) * 100).toFixed(2)
+					// const percentage = ((entries.length / totalSongs) * 100).toFixed(2)
 					return (
 						<div
 							key={added}
