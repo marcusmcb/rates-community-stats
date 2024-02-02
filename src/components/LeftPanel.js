@@ -10,10 +10,10 @@ const LeftPanel = ({
 }) => {
 	const [searchTerm, setSearchTerm] = useState('')
 
-	const totalSongs = Object.values(data).reduce(
-		(total, entries) => total + entries.length,
-		0
-	)
+	// const totalSongs = Object.values(data).reduce(
+	// 	(total, entries) => total + entries.length,
+	// 	0
+	// )
 
 	const sortedDataEntries = Object.entries(data)
 		.sort((a, b) => b[1].length - a[1].length)
