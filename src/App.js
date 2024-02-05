@@ -23,6 +23,31 @@ const App = () => {
 	const [selectedPlaylist, setSelectedPlaylist] = useState('January')
 
 	useEffect(() => {
+		// add method to collect tracks from each playlist		
+		const getSpotifyToken = async () => {
+			const spotifyClientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+			const spotifyClientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET;
+
+			const response = await fetch('https://accounts.spotify.com/api/token', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					'Authorization': 'Basic ' + btoa(spotifyClientID + ':' + spotifyClientSecret),
+				},
+				body: 'grant_type=client_credentials',
+			});
+
+			const data = await response.json();
+			console.log(data.access_token);
+			return data.access_token;
+		};
+
+		getSpotifyToken();
+		// add method to add tracks to master Spotify playlist
+	}, []);
+
+
+	useEffect(() => {
 		const handleResize = () => {
 			setWindowWidth(window.innerWidth)
 		}
@@ -42,7 +67,7 @@ const App = () => {
 						skipEmptyLines: true,
 						delimiter: ',',
 					})
-					console.log(parsedData)
+					console.log("PARSED: ", parsedData)
 					const dataByAdded = processData(parsedData.data)
 					setProcessedData(dataByAdded)
 					setData(
