@@ -20,7 +20,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('February')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('March')
 
 	// useEffect(() => {
 	// 	const spotifyClientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID
@@ -251,6 +251,7 @@ const App = () => {
 									fontFamily: 'Fira Sans',
 								}}
 							>
+								<option value='March'>March 2024 Playlist</option>
 								<option value='February'>February 2024 Playlist</option>
 								<option value='January'>January 2024 Playlist</option>
 								<option value='December'>December 2023 Playlist</option>
