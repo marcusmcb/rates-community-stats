@@ -275,7 +275,7 @@ const App = () => {
 						fontSize: '28px',
 						fontWeight: '600',
 						padding: '30px',
-						color: 'rgb(78, 146, 206)',
+						color: '#e3c087',
 					}}
 				>
 					The Full Playlist
@@ -315,7 +315,7 @@ const App = () => {
 									<tr>
 										<th
 											onClick={() => handleSort('originalOrder')}
-											style={{ color: 'rgb(78, 146, 206)' }}
+											style={{ color: '#e3c087' }}
 										>
 											Order{' '}
 											{sortedColumn === 'originalOrder'
@@ -326,7 +326,7 @@ const App = () => {
 										</th>
 										<th
 											onClick={() => handleSort('artist')}
-											style={{ color: 'rgb(78, 146, 206)' }}
+											style={{ color: '#e3c087' }}
 										>
 											Artist{' '}
 											{sortedColumn === 'artist'
@@ -337,7 +337,7 @@ const App = () => {
 										</th>
 										<th
 											onClick={() => handleSort('title')}
-											style={{ color: 'rgb(78, 146, 206)' }}
+											style={{ color: '#e3c087' }}
 										>
 											Title{' '}
 											{sortedColumn === 'title'
@@ -348,7 +348,7 @@ const App = () => {
 										</th>
 										<th
 											onClick={() => handleSort('added')}
-											style={{ color: 'rgb(78, 146, 206)' }}
+											style={{ color: '#e3c087' }}
 										>
 											Added By{' '}
 											{sortedColumn === 'added'
@@ -376,7 +376,7 @@ const App = () => {
 														icon={faHeadphones}
 														style={{
 															marginLeft: '10px',
-															color: 'rgb(80, 255, 251)',
+															color: '#f5cd8d',
 															fontSize: '13px',
 														}}
 													/>

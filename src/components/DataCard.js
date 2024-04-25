@@ -26,7 +26,7 @@ const DataCard = ({ added, entries }) => {
 					<span className="songs-text" style={{ marginLeft: '10px' }}>({entries.length} songs)</span>
 				)}
 
-				<span className='arrow-icon' style={{ color: 'rgb(78, 146, 206)'}} onClick={toggleDetails}>
+				<span className='arrow-icon' style={{ color: '#e3c087'}} onClick={toggleDetails}>
 					{showDetails ? '↑' : '↓'}
 				</span>
 			</div>
@@ -47,13 +47,13 @@ const DataCard = ({ added, entries }) => {
 									icon={faHeadphones}
 									style={{
 										marginLeft: '10px',
-										color: 'rgb(80, 255, 251)',
+										color: '#e3c087',
 										fontSize: '13px',
 									}}
 								/>
 							</a>
 						</div>
-						<div style={{ color: 'rgb(78, 146, 206)' }}>{entry.artist}</div>
+						<div style={{ color: '#f5cd8d' }}>{entry.artist}</div>
 					</div>
 				))}
 		</div>
@@ -61,3 +61,5 @@ const DataCard = ({ added, entries }) => {
 }
 
 export default DataCard
+
+// e3c087

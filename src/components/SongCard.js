@@ -20,7 +20,7 @@ const SongCard = ({ title, artist, added, index }) => {
 		>
 			<div style={{ fontSize: '18px' }}>
 				<strong
-					style={{ color: 'rgb(80, 255, 251)'}}
+					style={{ color: '#f5cd8d'}}
 				>
 					{index + 1}.
 					<a
@@ -32,16 +32,16 @@ const SongCard = ({ title, artist, added, index }) => {
 						{title}
 						<FontAwesomeIcon
 							icon={faHeadphones}
-							style={{ marginLeft: '10px', color: 'rgb(80, 255, 251)', fontSize: '15px' }}
+							style={{ marginLeft: '10px', color: '#e3c087', fontSize: '15px' }}
 						/>
 					</a>
 				</strong>
 			</div>
-			<div style={{ fontSize: '16px', marginTop: '2px', color: 'rgb(78, 146, 206)' }}>{artist}</div>
+			<div style={{ fontSize: '16px', marginTop: '2px', color: '#f5cd8d' }}>{artist}</div>
 			<div style={{ fontSize: '13px', fontStyle: 'italic', marginTop: '5px' }}>
 				added by{' '}
 				<span
-					style={{ fontStyle: 'italic', fontWeight: '600', color: 'rgb(80, 255, 251)' }}
+					style={{ fontStyle: 'italic', fontWeight: '600', color: '#e3c087' }}
 				>
 					{added}
 				</span>

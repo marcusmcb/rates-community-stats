@@ -54,11 +54,11 @@ a:visited {
 
 .added-entry {
 	cursor: pointer;
-	border-bottom: 1px solid #e5e5e5;
+	border-bottom: 1px solid #9a8c76;
 }
 
 .added-entry.selected {
-	background-color: rgb(80, 229, 255);
+	background-color: #e3c087;
 	color: black;
 }
 
@@ -116,14 +116,14 @@ th:nth-child(4) {
 }
 
 .songs-text {
-	color: rgb(80, 255, 251);
+	color: #f7cd89;
 }
 
 .songs-text-main {
-	color: rgb(80, 255, 251);
+	color: #f5cd8d;
 }
 
 .songs-text-main.selected {
-	background-color: rgb(80, 229, 255);
+	background-color: #e3c087;
 	color: black;
 }
