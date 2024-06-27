@@ -7,6 +7,10 @@ const Navbar = ({ selectedPlaylist }) => {
 	let playlistNumber, playlistYear
 
 	switch (selectedPlaylist) {
+		case 'June':
+			playlistNumber = '#24'
+			playlistYear = '2024'
+			break
 		case 'May':
 			playlistNumber = '#23'
 			playlistYear = '2024'
