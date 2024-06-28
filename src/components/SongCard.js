@@ -1,50 +1,32 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import createSpotifyLink from './helpers/createSpotifyLink'
+import './css/songcard.css'
 
 const SongCard = ({ title, artist, added, index }) => {
-	const createSpotifyLink = (artist, title) => {
-		const queryString = encodeURIComponent(`${artist} ${title}`)
-		return `https://open.spotify.com/search/${queryString}`
-	}
-
 	return (
-		<div
-			style={{
-				margin: '0 5%',
-				marginBottom: '10px',
-				padding: '10px',
-				border: '1px solid #ccc',
-				borderRadius: '5px',
-			}}
-		>
-			<div style={{ fontSize: '18px' }}>
-				<strong
-					style={{ color: '#f5cd8d'}}
-				>
+		<div className='songcard-main'>
+			<div className='songcard-index'>
+				<strong className='songcard-index-strong'>
 					{index + 1}.
 					<a
 						href={createSpotifyLink(artist, title)}
 						target='_blank'
 						rel='noopener noreferrer'
-						style={{ textDecoration: 'none', marginLeft: '5px' }}
+						className='songcard-spotify-anchor'
 					>
 						{title}
 						<FontAwesomeIcon
 							icon={faHeadphones}
-							style={{ marginLeft: '10px', color: '#e3c087', fontSize: '15px' }}
+							className='songcard-spotify-icon'
 						/>
 					</a>
 				</strong>
 			</div>
-			<div style={{ fontSize: '16px', marginTop: '2px', color: '#f5cd8d' }}>{artist}</div>
-			<div style={{ fontSize: '13px', fontStyle: 'italic', marginTop: '5px' }}>
-				added by{' '}
-				<span
-					style={{ fontStyle: 'italic', fontWeight: '600', color: '#e3c087' }}
-				>
-					{added}
-				</span>
+			<div className='songcard-spotify-artist'>{artist}</div>
+			<div className='songcard-spotify-added-by'>
+				added by <span className='songcard-spotify-added-by-span'>{added}</span>
 			</div>
 		</div>
 	)

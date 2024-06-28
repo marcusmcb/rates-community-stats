@@ -1,15 +1,11 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
+import createSpotifyLink from './helpers/createSpotifyLink'
 
-import './panels.css'
+import './css/panels.css'
 
 const RightPanel = ({ data }) => {
-	const createSpotifyLink = (artist, title) => {
-		const queryString = encodeURIComponent(`${artist} ${title}`)
-		return `https://open.spotify.com/search/${queryString}`
-	}
-
 	return (
 		<div className='right-panel panel'>
 			{data.map((entry, idx) => (
@@ -18,19 +14,15 @@ const RightPanel = ({ data }) => {
 						href={createSpotifyLink(entry.artist, entry.title)}
 						target='_blank'
 						rel='noopener noreferrer'
-						style={{
-							fontWeight: '600',
-							fontSize: '18px',							
-							textDecoration: 'none',
-						}}
+						className='spotify-anchor'
 					>
 						{entry.title}
 						<FontAwesomeIcon
 							icon={faHeadphones}
-							style={{ marginLeft: '10px', color: '#e3c087', fontSize: '15px' }}
+							className='spotify-anchor-icon'
 						/>
 					</a>
-					<div style={{ fontSize: '16px', color: '#f5cd8d' }}>{entry.artist}</div>
+					<div className='spotify-artist'>{entry.artist}</div>
 				</div>
 			))}
 		</div>

@@ -1,32 +1,27 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
-import './datacard.css'
+import createSpotifyLink from './helpers/createSpotifyLink'
+import './css/datacard.css'
 
 const DataCard = ({ added, entries }) => {
 	const [showDetails, setShowDetails] = useState(false)
 
 	const toggleDetails = () => {
 		setShowDetails(!showDetails)
-	}
-
-	// Function to create Spotify search URL
-	const createSpotifyLink = (artist, title) => {
-		const queryString = encodeURIComponent(`${artist} ${title}`)
-		return `https://open.spotify.com/search/${queryString}`
-	}
+	}	
 
 	return (
 		<div className='data-card'>
 			<div className='card-header'>
 				<strong>{added}</strong>
 				{entries.length === 1 ? (
-					<span style={{ marginLeft: '10px' }}>({entries.length} song)</span>
+					<span className='songs-text'>({entries.length} song)</span>
 				) : (
-					<span className="songs-text" style={{ marginLeft: '10px' }}>({entries.length} songs)</span>
+					<span className='songs-text'>({entries.length} songs)</span>
 				)}
 
-				<span className='arrow-icon' style={{ color: '#e3c087'}} onClick={toggleDetails}>
+				<span className='arrow-icon' onClick={toggleDetails}>
 					{showDetails ? '↑' : '↓'}
 				</span>
 			</div>
@@ -34,7 +29,7 @@ const DataCard = ({ added, entries }) => {
 			{showDetails &&
 				entries.map((entry, idx) => (
 					<div key={idx} className='entry'>
-						<div style={{ fontWeight: '600', fontSize: '16px' }}>
+						<div className='data-card-song-title'>
 							{/* Updated the title to include a link */}
 							<a
 								href={createSpotifyLink(entry.artist, entry.title)}
@@ -45,15 +40,11 @@ const DataCard = ({ added, entries }) => {
 								{entry.title}
 								<FontAwesomeIcon
 									icon={faHeadphones}
-									style={{
-										marginLeft: '10px',
-										color: '#e3c087',
-										fontSize: '13px',
-									}}
+									className='data-card-headphone-icony'
 								/>
 							</a>
 						</div>
-						<div style={{ color: '#f5cd8d' }}>{entry.artist}</div>
+						<div className='data-card-song-artist'>{entry.artist}</div>
 					</div>
 				))}
 		</div>

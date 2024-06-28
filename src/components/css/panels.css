@@ -1,0 +1,82 @@
+:root {
+	--border-color-light: #eee;
+	--spotify-anchor-color: #e3c087;
+	--spotify-artist-color: #f5cd8d;
+}
+
+.entry-header {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+.entry-list {
+	margin-top: 10px;
+}
+
+.added-entry {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	padding: 5px 0;
+	border-bottom: 1px solid var(--border-color-light);
+}
+
+.added-entry:last-child {
+	border-bottom: none;
+}
+
+.added-entry .added-label {
+	margin-right: 10px;
+}
+
+.added-name {
+	font-weight: 600;
+	font-size: 16px;
+	margin-left: 10px;
+}
+
+.left-panel {
+	margin-left: 5%;
+}
+
+.right-panel {
+	margin-right: 5%;
+}
+
+.spotify-anchor {
+	font-weight: 600;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+.spotify-anchor-icon {
+	margin-left: 10px;
+	color: var(--spotify-anchor-color);
+}
+
+.spotify-artist {
+	font-size: 16px;
+	color: var(--spotify-artist-color);
+}
+
+.left-panel-selector {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0 15px 0;
+	box-sizing: border-box;
+	font-family: 'Fira Sans';
+}
+
+.left-panel-selector-input {
+	width: 100% !important;
+	padding: 5px;
+	margin: 5px 0 15px 0;
+	box-sizing: border-box;
+	font-family: 'Fira Sans';
+}
+
+.left-panel-no-matches-found {
+	text-align: center;
+	margin-top: 20px;
+}

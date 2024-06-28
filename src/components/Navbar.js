@@ -53,62 +53,31 @@ const Navbar = ({ selectedPlaylist }) => {
 	}
 	return (
 		<Fragment>
-			<div
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',					
-				}}
-			>
+			<div className='navbar-main'>
 				<div className='navbar-left'>
 					<a
 						href='https://twitch.tv/ratewonder'
 						rel='noreferrer'
 						target='_blank'
-						style={{ textDecoration: 'none', color: '#f5cd8d' }}
 					>
 						<FontAwesomeIcon icon={faTwitch} size='2x' />
 					</a>
 				</div>
-				<div
-					style={{
-						flex: 3,
-						textAlign: 'center',
-						fontSize: '30px',
-						fontWeight: '600',
-						padding: '10px',
-					}}
-				>
-					Rate's Community Stats
-				</div>
+				<div className='navbar-title'>Rate's Community Stats</div>
 				<div className='navbar-right'>
 					<a
 						href='https://open.spotify.com/user/djrate'
 						rel='noreferrer'
 						target='_blank'
-						style={{ textDecoration: 'none', color: '#f5cd8d' }}
 					>
 						<FontAwesomeIcon icon={faSpotify} size='2x' />
 					</a>
 				</div>
 			</div>
-			<div
-				style={{
-					textAlign: 'center',
-					fontSize: '18px',
-					marginBottom: '5px',
-				}}
-			>
+			<div className='navbar-playlist-title'>
 				Community Spotify Playlist {playlistNumber}
 			</div>
-			<div
-				style={{
-					textAlign: 'center',
-					fontSize: '18px',
-					marginBottom: '15px',
-					color: 'lightgray'
-				}}
-			>
+			<div className='navbar-playlist-subtitle'>
 				Playlist Stats ({selectedPlaylist} {playlistYear})
 			</div>
 		</Fragment>

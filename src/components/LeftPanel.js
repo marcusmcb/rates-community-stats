@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './panels.css'
+import './css/panels.css'
 
 const LeftPanel = ({
 	data,
@@ -24,13 +24,7 @@ const LeftPanel = ({
 			<select
 				value={selectedPlaylist}
 				onChange={(e) => onPlaylistChange(e.target.value)}
-				style={{
-					width: '100%',
-					padding: '5px',
-					margin: '5px 0 15px 0',
-					boxSizing: 'border-box',
-					fontFamily: 'Fira Sans'
-				}}
+				className='left-panel-selector'
 			>
 				<option value='June'>June 2024 Playlist</option>
 				<option value='May'>May 2024 Playlist</option>
@@ -48,13 +42,7 @@ const LeftPanel = ({
 				placeholder='Search by Spotify screen-name'
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}
-				style={{
-					width: '100%',
-					padding: '5px',
-					margin: '5px 0 15px 0',
-					boxSizing: 'border-box',
-					fontFamily: 'Fira Sans'
-				}}
+				className='left-panel-selector-input'
 			/>
 			{sortedDataEntries.length > 0 ? (
 				sortedDataEntries.map(([added, entries]) => {
@@ -68,9 +56,11 @@ const LeftPanel = ({
 							onClick={() => onSelect(added)}
 						>
 							<div className='added-label added-name'>{added}</div>
-							<div className={`songs-text-main ${
-								added === selectedAdded ? 'selected' : ''
-							}`}>
+							<div
+								className={`songs-text-main ${
+									added === selectedAdded ? 'selected' : ''
+								}`}
+							>
 								{entries.length} song{entries.length !== 1 ? 's' : ''}
 								{/* <span> ({percentage}%)</span> */}
 							</div>
@@ -78,9 +68,7 @@ const LeftPanel = ({
 					)
 				})
 			) : (
-				<div style={{ textAlign: 'center', marginTop: '20px' }}>
-					No matches found.
-				</div>
+				<div className='left-panel-no-matches-found'>No matches found.</div>
 			)}
 		</div>
 	)

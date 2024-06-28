@@ -1,0 +1,50 @@
+:root {
+	--border-color: #ccc;
+	--songcard-highlight-color: #f5cd8d;
+	--songcard-anchor-color: #e3c087;
+}
+
+.songcard-main {
+	margin: 0 5px;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+}
+
+.songcard-index {
+	font-size: 18px;
+}
+
+.songcard-index-strong {
+	color: var(--songcard-highlight-color);
+}
+
+.songcard-spotify-anchor {
+	text-decoration: none;
+	margin-left: 5px;
+}
+
+.songcard-spotify-icon {
+	margin-left: 10px;
+	color: var(--songcard-anchor-color);
+	font-size: 15px;
+}
+
+.songcard-spotify-artist {
+	font-size: 16px;
+	margin-top: 2px;
+	color: var(--songcard-highlight-color);
+}
+
+.songcard-spotify-added-by {
+	font-size: 13px;
+	font-style: italic;
+	margin-top: 5px;
+}
+
+.songcard-spotify-added-by-span {
+	font-style: italic;
+	font-weight: 600;
+	color: var(--songcard-anchor-color);
+}

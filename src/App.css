@@ -1,15 +1,32 @@
+:root {
+	--background-color: #2b2b2b;
+	--text-color: white;
+	--border-color: #ccc;
+	--border-color-secondary: #9a8c76;
+	--selected-background-color: #e3c087;
+	--selected-text-color: black;
+	--entry-border-color: #e5e5e5;
+	--highlight-color: #e3c087;
+	--search-not-found-color: rgb(227, 127, 39);
+	--headphone-icon-color: #f5cd8d;
+	--table-background-color: rgba(101, 101, 101, 0.509);
+	--link-color: #f5cd8d;
+	--songs-text-color: #f7cd89;
+	--songs-text-main-color: #f5cd8d;
+}
+
 body {
 	font-family: 'Fira Sans', sans-serif;
 }
 
 .main-app {
-	background-color: #2b2b2b;
-	color: white;
+	background-color: var(--background-color);
+	color: var(--text-color);
 }
 
 a,
 a:visited {
-	color: white;
+	color: var(--text-color);
 }
 
 .cardContainer {
@@ -37,41 +54,97 @@ a:visited {
 
 .panel {
 	padding: 20px;
-	border: 1px solid #ccc;
+	border: 1px solid var(--border-color);
 }
 
 .left-panel {
 	width: 30%;
-	border: 1px solid #ccc;
+	border: 1px solid var(--border-color);
 	overflow-y: auto;
 }
 
 .right-panel {
 	width: 65%;
-	border: 1px solid #ccc;
+	border: 1px solid var(--border-color);
 	overflow-y: auto;
 }
 
 .added-entry {
 	cursor: pointer;
-	border-bottom: 1px solid #9a8c76;
+	border-bottom: 1px solid var(--border-color-secondary);
 }
 
 .added-entry.selected {
-	background-color: #e3c087;
-	color: black;
+	background-color: var(--selected-background-color);
+	color: var(--selected-text-color);
 }
 
 .entry {
 	padding: 10px;
-	border-bottom: 1px solid #e5e5e5;
+	border-bottom: 1px solid var(--entry-border-color);
+}
+
+.selector-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.selector {
+	padding: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+	width: 70%;
+	font-family: 'Fira Sans';
+}
+
+.full-playlist-header {
+	text-align: center;
+	font-size: 28px;
+	font-weight: 600;
+	padding: 30px;
+	color: var(--highlight-color);
+}
+
+.full-playlist-search {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.full-playlist-search input {
+	text-align: center;
+	width: 50%;
+	height: 20px;
+	font-family: 'Fira Sans';
+}
+
+.search-not-found {
+	text-align: center;
+	margin-top: 10px;
+	color: var(--search-not-found-color);
+}
+
+.table-body-anchor {
+	color: inherit;
+	text-decoration: none;
+}
+
+.headphone-icon {
+	margin-left: 10px;
+	color: var(--headphone-icon-color);
+	font-size: 13px;
 }
 
 table {
 	width: 100%;
 	table-layout: fixed;
 	border-collapse: collapse;
-	background-color: rgba(101, 101, 101, 0.509);
+	background-color: var(--table-background-color);
 }
 
 th,
@@ -108,6 +181,20 @@ th:nth-child(4) {
 	margin-top: 35px;
 }
 
+.navbar-left a,
+.navbar-right a {
+	text-decoration: none;
+	color: var(--link-color);
+}
+
+.navbar-title {
+	flex: 3;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 600;
+	padding: 10px;
+}
+
 .navbar-right {
 	flex: 1;
 	text-align: center;
@@ -115,15 +202,35 @@ th:nth-child(4) {
 	margin-top: 35px;
 }
 
+.navbar-main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.navbar-playlist-title {
+	text-align: center;
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+.navbar-playlist-subtitle {
+	text-align: center;
+	font-size: 18px;
+	margin-bottom: 15px;
+	color: lightgray;
+}
+
 .songs-text {
-	color: #f7cd89;
+	color: var(--songs-text-color);
+	margin-left: 10px;
 }
 
 .songs-text-main {
-	color: #f5cd8d;
+	color: var(--songs-text-main-color);
 }
 
 .songs-text-main.selected {
-	background-color: #e3c087;
-	color: black;
+	background-color: var(--selected-background-color);
+	color: var(--selected-text-color);
 }

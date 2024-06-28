@@ -6,9 +6,9 @@ import DataCard from './components/DataCard'
 import SongCard from './components/SongCard'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import createSpotifyLink from './components/helpers/createSpotifyLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
-// import BillboardChart from './components/billboardui/chart'
 
 import './App.css'
 
@@ -166,10 +166,7 @@ const App = () => {
 		fetchData(selectedPlaylist)
 	}, [selectedPlaylist])
 
-	const createSpotifyLink = (artist, title) => {
-		const queryString = encodeURIComponent(`${artist} ${title}`)
-		return `https://open.spotify.com/search/${queryString}`
-	}
+	
 
 	const handleSort = (columnName) => {
 		let sortedData = [...data]
@@ -232,24 +229,11 @@ const App = () => {
 					</div>
 				) : (
 					<div>
-						<div
-							style={{
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}
-						>
+						<div className='selector-div'>
 							<select
+								className='selector'
 								value={selectedPlaylist}
 								onChange={(e) => setSelectedPlaylist(e.target.value)}
-								style={{
-									padding: '5px',
-									marginLeft: '5px',
-									marginBottom: '5px',
-									boxSizing: 'border-box',
-									width: '70%',
-									fontFamily: 'Fira Sans',
-								}}
 							>
 								<option value='June'>June 2024 Playlist</option>
 								<option value='May'>May 2024 Playlist</option>
@@ -271,35 +255,10 @@ const App = () => {
 							))}
 					</div>
 				)}
-				<div
-					style={{
-						textAlign: 'center',
-						fontSize: '28px',
-						fontWeight: '600',
-						padding: '30px',
-						color: '#e3c087',
-					}}
-				>
-					The Full Playlist
-				</div>
+				<div className='full-playlist-header'>The Full Playlist</div>
 
-				<div
-					style={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						marginBottom: '20px',
-						marginLeft: '5%',
-						marginRight: '5%',
-					}}
-				>
+				<div className='full-playlist-search'>
 					<input
-						style={{
-							textAlign: 'center',
-							width: '50%',
-							height: '20px',
-							fontFamily: 'Fira Sans',
-						}}
 						type='text'
 						placeholder='Search by title, artist, or Spotify screen-name'
 						value={searchTerm}
@@ -371,16 +330,12 @@ const App = () => {
 													href={createSpotifyLink(item.artist, item.title)}
 													target='_blank'
 													rel='noopener noreferrer'
-													style={{ color: 'inherit', textDecoration: 'none' }}
+													className='table-body-anchor'
 												>
 													{item.title}
 													<FontAwesomeIcon
 														icon={faHeadphones}
-														style={{
-															marginLeft: '10px',
-															color: '#f5cd8d',
-															fontSize: '13px',
-														}}
+														className='headphone-icon'
 													/>
 												</a>
 											</td>
@@ -391,8 +346,8 @@ const App = () => {
 							</table>
 						</div>
 					) : (
-						<div style={{ textAlign: 'center', marginTop: '10px' }}>
-							Sorry, but we can't find that.
+						<div className='search-not-found'>
+							Rate didn't play that in this playlist.
 						</div>
 					)
 				) : filteredData.length > 0 ? (
@@ -406,8 +361,8 @@ const App = () => {
 						/>
 					))
 				) : (
-					<div style={{ textAlign: 'center', marginTop: '10px' }}>
-						Sorry, but we can't find that.
+					<div className='search-not-found'>
+						Rate didn't play that in this playlist.
 					</div>
 				)}
 				<Footer />
