@@ -22,112 +22,112 @@ const App = () => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 	const [selectedPlaylist, setSelectedPlaylist] = useState('June')
 
-	// useEffect(() => {
-	// 	const spotifyClientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID
-	// 	const spotifyClientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET
-	// 	const playlistId = '2yIGj8H1bTRYTQTrrVsFOj'
+	useEffect(() => {
+		const spotifyClientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID
+		const spotifyClientSecret = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET
+		const playlistId = '2yIGj8H1bTRYTQTrrVsFOj'
 
-	// 	// Method to get Spotify token
-	// 	const getSpotifyToken = async () => {
-	// 		const response = await fetch('https://accounts.spotify.com/api/token', {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Content-Type': 'application/x-www-form-urlencoded',
-	// 				Authorization:
-	// 					'Basic ' + btoa(`${spotifyClientID}:${spotifyClientSecret}`),
-	// 			},
-	// 			body: 'grant_type=client_credentials',
-	// 		})
+		// Method to get Spotify token
+		const getSpotifyToken = async () => {
+			const response = await fetch('https://accounts.spotify.com/api/token', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+					Authorization:
+						'Basic ' + btoa(`${spotifyClientID}:${spotifyClientSecret}`),
+				},
+				body: 'grant_type=client_credentials',
+			})
 
-	// 		const data = await response.json()
-	// 		return data.access_token
-	// 	}
+			const data = await response.json()
+			return data.access_token
+		}
 
-	// 	// Method to fetch and process playlist data
-	// 	const fetchAndProcessPlaylist = async (playlist, accessToken) => {
-	// 		const response = await fetch(
-	// 			`/data/rate_wonder_spotify_stream_${playlist.toLowerCase()}.csv`
-	// 		)
-	// 		const text = await response.text()
-	// 		const parsed = Papa.parse(text, {
-	// 			header: true,
-	// 			skipEmptyLines: true,
-	// 			delimiter: ',',
-	// 		})
-	// 		console.log(parsed)
-	// 		// Map parsed data to get titles and artists
-	// 		return parsed.data.map(({ title, artist }) => ({ title, artist }))
-	// 	}
+		// Method to fetch and process playlist data
+		const fetchAndProcessPlaylist = async (playlist, accessToken) => {
+			const response = await fetch(
+				`/data/rate_wonder_spotify_stream_${playlist.toLowerCase()}.csv`
+			)
+			const text = await response.text()
+			const parsed = Papa.parse(text, {
+				header: true,
+				skipEmptyLines: true,
+				delimiter: ',',
+			})
+			console.log(parsed)
+			// Map parsed data to get titles and artists
+			return parsed.data.map(({ title, artist }) => ({ title, artist }))
+		}
 
-	// 	// Method to search for a track by title and artist and get its Spotify ID
-	// 	const searchTrackId = async (title, artist, accessToken) => {
-	// 		const searchQuery = `${title} artist:${artist}`
-	// 		const response = await fetch(
-	// 			`https://api.spotify.com/v1/search?q=${encodeURIComponent(
-	// 				searchQuery
-	// 			)}&type=track&limit=1`,
-	// 			{
-	// 				headers: { 'Authorization': `Bearer ${accessToken}` },
-	// 			}
-	// 		)
-	// 		const data = await response.json()
-	// 		return data.tracks.items[0]?.id
-	// 	}
+		// Method to search for a track by title and artist and get its Spotify ID
+		const searchTrackId = async (title, artist, accessToken) => {
+			const searchQuery = `${title} artist:${artist}`
+			const response = await fetch(
+				`https://api.spotify.com/v1/search?q=${encodeURIComponent(
+					searchQuery
+				)}&type=track&limit=1`,
+				{
+					headers: { 'Authorization': `Bearer ${accessToken}` },
+				}
+			)
+			const data = await response.json()
+			return data.tracks.items[0]?.id
+		}
 
-	// 	// Method to add tracks to a Spotify playlist
-	// 	const addTracksToPlaylist = async (trackIds, accessToken) => {
-	// 		console.log("Track Ids: ", trackIds)
-	// 		console.log("Token: ", accessToken)
-	// 		if (trackIds.length > 0) {
-	// 			await fetch(
-	// 				`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-	// 				{
-	// 					method: 'POST',
-	// 					headers: {
-	// 						'Authorization': `Bearer ${accessToken}`,
-	// 						'Content-Type': 'application/json',
-	// 					},
-	// 					body: JSON.stringify({
-	// 						uris: trackIds.map((id) => `spotify:track:${id}`),
-	// 					}),
-	// 				}
-	// 			)
-	// 		}
-	// 	}
+		// Method to add tracks to a Spotify playlist
+		const addTracksToPlaylist = async (trackIds, accessToken) => {			
+			console.log("Token: ", accessToken)
+			if (trackIds.length > 0) {
+				await fetch(
+					`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+					{
+						method: 'POST',
+						headers: {
+							'Authorization': `Bearer ${accessToken}`,
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							uris: trackIds.map((id) => `spotify:track:${id}`),
+						}),
+					}
+				)
+			}
+		}
 
-	// 	// Main async function to orchestrate getting the token, fetching playlist data, and adding tracks
-	// 	const init = async () => {
-	// 		const accessToken = await getSpotifyToken()
-	// 		console.log(accessToken)
-	// 		const playlists = [
-	// 			'december',
-	// 			'january',
-	// 			'november',
-	// 			'october',
-	// 			'september',
-	// 		]
-	// 		const songObjects = await Promise.all(
-	// 			playlists.flatMap((playlist) =>
-	// 				fetchAndProcessPlaylist(playlist, accessToken)
-	// 			)
-	// 		)
+		// Main async function to orchestrate getting the token, fetching playlist data, and adding tracks
+		const init = async () => {
+			const accessToken = await getSpotifyToken()
+			console.log(accessToken)
+			const playlists = [
+				'december',
+				'january',
+				'november',
+				'october',
+				'september',
+			]
+			const songObjects = await Promise.all(
+				playlists.flatMap((playlist) =>
+					fetchAndProcessPlaylist(playlist, accessToken)
+				)
+			)
 
-	// 		console.log("Song Objects: ", songObjects)
+			console.log("Song Objects: ", songObjects)
 
-	// 		const trackIds = await Promise.all(
-	// 			songObjects.map(({ title, artist }) =>
-	// 				searchTrackId(title, artist, accessToken)
-	// 			)
-	// 		)
+			const trackIds = await Promise.all(
+				songObjects.map(({ title, artist }) =>
+					searchTrackId(title, artist, accessToken)
+				)
+			)
 
-	// 		console.log("Track Ids: ", trackIds)
+			console.log("Track Ids: ", trackIds)
 
-	// 		const filteredTrackIds = trackIds.filter((id) => id) // Remove undefined or null IDs
-	// 		await addTracksToPlaylist(filteredTrackIds, accessToken)
-	// 	}
+			const filteredTrackIds = trackIds.filter((id) => id) // Remove undefined or null IDs
 
-	// 	init().catch(console.error)
-	// }, [])
+			await addTracksToPlaylist(filteredTrackIds, accessToken)
+		}
+
+		init().catch(console.error)
+	}, [])
 
 	useEffect(() => {
 		const handleResize = () => {

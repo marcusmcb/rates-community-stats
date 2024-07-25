@@ -2,8 +2,7 @@ import { Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
 
-const Navbar = ({ selectedPlaylist }) => {
-	// const playlistNumber = selectedPlaylist === 'October' ? '#16' : '#15'
+const Navbar = ({ selectedPlaylist }) => {	
 	let playlistNumber, playlistYear
 
 	switch (selectedPlaylist) {
