@@ -40,7 +40,7 @@ const DataCard = ({ added, entries }) => {
 								{entry.title}
 								<FontAwesomeIcon
 									icon={faHeadphones}
-									className='data-card-headphone-icony'
+									className='data-card-headphone-icon'									
 								/>
 							</a>
 						</div>
