@@ -1,7 +1,22 @@
 :root {
-	--border-color-light: #eee;
-	--spotify-anchor-color: #e3c087;
-	--spotify-artist-color: #f5cd8d;
+	/* Light border color */
+	--border-color-light: hsl(
+		0,
+		0%,
+		93%
+	); /* Very light gray (slightly darker than pure white) */
+
+	/* Spotify-related Colors */
+	--spotify-anchor-color: hsl(
+		45,
+		70%,
+		65%
+	); /* Soft golden-yellow, matching the selected-background-color */
+	--spotify-artist-color: hsl(
+		45,
+		65%,
+		75%
+	); /* Light gold, matching the songs-text-main-color */
 }
 
 .entry-header {

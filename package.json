@@ -16,12 +16,13 @@
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-papaparse": "^4.4.0",
+		"react-router-dom": "^6.27.0",
 		"react-scripts": "5.0.1",
 		"web-vitals": "^2.1.4"
 	},
 	"scripts": {
 		"start": "cross-env BROWSER=none nodemon --exec react-scripts start",
-		"build": "react-scripts build",
+		"build": "react-scripts build && node ./utils/fix-paths.js",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
@@ -44,7 +45,7 @@
 		]
 	},
 	"devDependencies": {
-		"nodemon": "^3.1.4",
-		"cross-env": "^7.0.3"
+		"cross-env": "^7.0.3",
+		"nodemon": "^3.1.4"
 	}
 }

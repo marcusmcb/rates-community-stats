@@ -26,6 +26,7 @@ const LeftPanel = ({
 				onChange={(e) => onPlaylistChange(e.target.value)}
 				className='left-panel-selector'
 			>
+				<option value='September'>September 2024 Playlist</option>
 				<option value='August'>August 2024 Playlist</option>
 				<option value='July'>July 2024 Playlist</option>
 				<option value='June'>June 2024 Playlist</option>
@@ -37,7 +38,7 @@ const LeftPanel = ({
 				<option value='December'>December 2023 Playlist</option>
 				<option value='November'>November 2023 Playlist</option>
 				<option value='October'>October 2023 Playlist</option>
-				<option value='September'>September 2023 Playlist</option>
+				
 			</select>
 			<input
 				type='text'

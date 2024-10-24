@@ -1,0 +1,57 @@
+import { Fragment } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
+import { useNavigate } from 'react-router-dom'
+import Footer from './Footer'
+
+import './css/navbar.css'
+import '../App.css'
+
+const VaultNavbar = () => {
+
+	const navigate = useNavigate()	
+
+	const handleHomeClick = () => {
+		navigate('/')
+	}
+	
+	return (
+		<Fragment>
+			<div className='navbar-main'>
+				<div className='navbar-left'>
+					<a
+						href='https://twitch.tv/ratewonder'
+						rel='noreferrer'
+						target='_blank'
+					>
+						<FontAwesomeIcon icon={faTwitch} size='2x' />
+					</a>
+				</div>
+				<div className='navbar-title'>Rate's Community Stats</div>
+				<div className='navbar-right'>
+					<a
+						href='https://open.spotify.com/user/djrate'
+						rel='noreferrer'
+						target='_blank'
+					>
+						<FontAwesomeIcon icon={faSpotify} size='2x' />
+					</a>
+				</div>
+			</div>
+			<div className='navbar-playlist-title'>
+				The Vault
+			</div>
+			<div className='navbar-playlist-subtitle'>
+				Search By Artist or Song
+			</div>
+			<div className='vault-button-component'>
+				<button className='vault-button' onClick={handleHomeClick}>
+					Home
+				</button>
+			</div>
+      <Footer />
+		</Fragment>
+	)
+}
+
+export default VaultNavbar

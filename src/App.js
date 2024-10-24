@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Papa from 'papaparse'
 import LeftPanel from './components/LeftPanel'
 import RightPanel from './components/RightPanel'
@@ -6,6 +7,7 @@ import DataCard from './components/DataCard'
 import SongCard from './components/SongCard'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Vault from './components/Vault'
 import createSpotifyLink from './components/helpers/createSpotifyLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
@@ -20,7 +22,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('August')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('September')
 
 	useEffect(() => {
 		const spotifyClientID = process.env.REACT_APP_SPOTIFY_CLIENT_ID
@@ -67,7 +69,7 @@ const App = () => {
 					searchQuery
 				)}&type=track&limit=1`,
 				{
-					headers: { 'Authorization': `Bearer ${accessToken}` },
+					headers: { Authorization: `Bearer ${accessToken}` },
 				}
 			)
 			const data = await response.json()
@@ -75,15 +77,15 @@ const App = () => {
 		}
 
 		// Method to add tracks to a Spotify playlist
-		const addTracksToPlaylist = async (trackIds, accessToken) => {			
-			console.log("Token: ", accessToken)
+		const addTracksToPlaylist = async (trackIds, accessToken) => {
+			console.log('Token: ', accessToken)
 			if (trackIds.length > 0) {
 				await fetch(
 					`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
 					{
 						method: 'POST',
 						headers: {
-							'Authorization': `Bearer ${accessToken}`,
+							Authorization: `Bearer ${accessToken}`,
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
@@ -111,7 +113,7 @@ const App = () => {
 				)
 			)
 
-			console.log("Song Objects: ", songObjects)
+			console.log('Song Objects: ', songObjects)
 
 			const trackIds = await Promise.all(
 				songObjects.map(({ title, artist }) =>
@@ -119,7 +121,7 @@ const App = () => {
 				)
 			)
 
-			console.log("Track Ids: ", trackIds)
+			console.log('Track Ids: ', trackIds)
 
 			const filteredTrackIds = trackIds.filter((id) => id) // Remove undefined or null IDs
 
@@ -166,8 +168,6 @@ const App = () => {
 		fetchData(selectedPlaylist)
 	}, [selectedPlaylist])
 
-	
-
 	const handleSort = (columnName) => {
 		let sortedData = [...data]
 		if (columnName === 'originalOrder') {
@@ -210,166 +210,187 @@ const App = () => {
 	)
 
 	return (
-		<Fragment>
-			{/* <BillboardChart/> */}
-			<div className='main-app'>
-				<Navbar selectedPlaylist={selectedPlaylist} />
-				{windowWidth > 860 ? (
-					<div>
-						<div className='panels-container'>
-							<LeftPanel
-								data={processedData}
-								selectedAdded={selectedAdded}
-								onSelect={setSelectedAdded}
-								selectedPlaylist={selectedPlaylist}
-								onPlaylistChange={setSelectedPlaylist}
-							/>
-							<RightPanel data={processedData[selectedAdded] || []} />
-						</div>
-					</div>
-				) : (
-					<div>
-						<div className='selector-div'>
-							<select
-								className='selector'
-								value={selectedPlaylist}
-								onChange={(e) => setSelectedPlaylist(e.target.value)}
-							>
-								<option value='August'>August 2024 Playlist</option>
-								<option value='July'>July 2024 Playlist</option>
-								<option value='June'>June 2024 Playlist</option>
-								<option value='May'>May 2024 Playlist</option>
-								<option value='April'>April 2024 Playlist</option>
-								<option value='March'>March 2024 Playlist</option>
-								<option value='February'>February 2024 Playlist</option>
-								<option value='January'>January 2024 Playlist</option>
-								<option value='December'>December 2023 Playlist</option>
-								<option value='November'>November 2023 Playlist</option>
-								<option value='October'>October 2023 Playlist</option>
-								<option value='September'>September 2023 Playlist</option>
-							</select>
-						</div>
+		<Router>
+			
+			<Routes>
+				<Route
+					path='/'
+					element={
+						<Fragment>
+							{/* <BillboardChart/> */}
+							<div className='main-app'>
+								<Navbar selectedPlaylist={selectedPlaylist} />
+								{windowWidth > 860 ? (
+									<div>
+										<div className='panels-container'>
+											<LeftPanel
+												data={processedData}
+												selectedAdded={selectedAdded}
+												onSelect={setSelectedAdded}
+												selectedPlaylist={selectedPlaylist}
+												onPlaylistChange={setSelectedPlaylist}
+											/>
+											<RightPanel data={processedData[selectedAdded] || []} />
+										</div>
+									</div>
+								) : (
+									<div>
+										<div className='selector-div'>
+											<select
+												className='selector'
+												value={selectedPlaylist}
+												onChange={(e) => setSelectedPlaylist(e.target.value)}
+											>
+												<option value='September'>
+													September 2024 Playlist
+												</option>
+												<option value='August'>August 2024 Playlist</option>
+												<option value='July'>July 2024 Playlist</option>
+												<option value='June'>June 2024 Playlist</option>
+												<option value='May'>May 2024 Playlist</option>
+												<option value='April'>April 2024 Playlist</option>
+												<option value='March'>March 2024 Playlist</option>
+												<option value='February'>February 2024 Playlist</option>
+												<option value='January'>January 2024 Playlist</option>
+												<option value='December'>December 2023 Playlist</option>
+												<option value='November'>November 2023 Playlist</option>
+												<option value='October'>October 2023 Playlist</option>
+											</select>
+										</div>
 
-						{Object.entries(processedData)
-							.sort((a, b) => b[1].length - a[1].length)
-							.map(([added, entries]) => (
-								<DataCard key={added} added={added} entries={entries} />
-							))}
-					</div>
-				)}
-				<div className='full-playlist-header'>The Full Playlist</div>
+										{Object.entries(processedData)
+											.sort((a, b) => b[1].length - a[1].length)
+											.map(([added, entries]) => (
+												<DataCard key={added} added={added} entries={entries} />
+											))}
+									</div>
+								)}
+								<div className='full-playlist-header'>The Full Playlist</div>
 
-				<div className='full-playlist-search'>
-					<input
-						type='text'
-						placeholder='Search by title, artist, or Spotify screen-name'
-						value={searchTerm}
-						onChange={(e) => setSearchTerm(e.target.value)}
-					/>
-				</div>
+								<div className='full-playlist-search'>
+									<input
+										type='text'
+										placeholder='Search by title, artist, or Spotify screen-name'
+										value={searchTerm}
+										onChange={(e) => setSearchTerm(e.target.value)}
+									/>
+								</div>
 
-				{windowWidth > 860 ? (
-					filteredData.length > 0 ? (
-						<div
-							style={{ overflowX: 'auto', marginLeft: '5%', marginRight: '5%' }}
-						>
-							<table>
-								<thead>
-									<tr>
-										<th
-											onClick={() => handleSort('originalOrder')}
-											style={{ color: '#e3c087' }}
+								{windowWidth > 860 ? (
+									filteredData.length > 0 ? (
+										<div
+											style={{
+												overflowX: 'auto',
+												marginLeft: '5%',
+												marginRight: '5%',
+											}}
 										>
-											Order{' '}
-											{sortedColumn === 'originalOrder'
-												? sortDirection === 'asc'
-													? '↑'
-													: '↓'
-												: ''}
-										</th>
-										<th
-											onClick={() => handleSort('artist')}
-											style={{ color: '#e3c087' }}
-										>
-											Artist{' '}
-											{sortedColumn === 'artist'
-												? sortDirection === 'asc'
-													? '↑'
-													: '↓'
-												: ''}
-										</th>
-										<th
-											onClick={() => handleSort('title')}
-											style={{ color: '#e3c087' }}
-										>
-											Title{' '}
-											{sortedColumn === 'title'
-												? sortDirection === 'asc'
-													? '↑'
-													: '↓'
-												: ''}
-										</th>
-										<th
-											onClick={() => handleSort('added')}
-											style={{ color: '#e3c087' }}
-										>
-											Added By{' '}
-											{sortedColumn === 'added'
-												? sortDirection === 'asc'
-													? '↑'
-													: '↓'
-												: ''}
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									{filteredData.map((item, index) => (
-										<tr key={index}>
-											<td>{item.originalOrder + 1}</td>
-											<td>{item.artist}</td>
-											<td>
-												<a
-													href={createSpotifyLink(item.artist, item.title)}
-													target='_blank'
-													rel='noopener noreferrer'
-													className='table-body-anchor'
-												>
-													{item.title}
-													<FontAwesomeIcon
-														icon={faHeadphones}
-														className='headphone-icon'
-													/>
-												</a>
-											</td>
-											<td>{item.added}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</div>
-					) : (
-						<div className='search-not-found'>
-							Rate didn't play that in this playlist.
-						</div>
-					)
-				) : filteredData.length > 0 ? (
-					filteredData.map((item, index) => (
-						<SongCard
-							key={index}
-							title={item.title}
-							artist={item.artist}
-							added={item.added}
-							index={index}
-						/>
-					))
-				) : (
-					<div className='search-not-found'>
-						Rate didn't play that in this playlist.
-					</div>
-				)}
-				<Footer />
-			</div>
-		</Fragment>
+											<table>
+												<thead>
+													<tr>
+														<th
+															onClick={() => handleSort('originalOrder')}
+															style={{ color: '#e3c087' }}
+														>
+															Order{' '}
+															{sortedColumn === 'originalOrder'
+																? sortDirection === 'asc'
+																	? '↑'
+																	: '↓'
+																: ''}
+														</th>
+														<th
+															onClick={() => handleSort('artist')}
+															style={{ color: '#e3c087' }}
+														>
+															Artist{' '}
+															{sortedColumn === 'artist'
+																? sortDirection === 'asc'
+																	? '↑'
+																	: '↓'
+																: ''}
+														</th>
+														<th
+															onClick={() => handleSort('title')}
+															style={{ color: '#e3c087' }}
+														>
+															Title{' '}
+															{sortedColumn === 'title'
+																? sortDirection === 'asc'
+																	? '↑'
+																	: '↓'
+																: ''}
+														</th>
+														<th
+															onClick={() => handleSort('added')}
+															style={{ color: '#e3c087' }}
+														>
+															Added By{' '}
+															{sortedColumn === 'added'
+																? sortDirection === 'asc'
+																	? '↑'
+																	: '↓'
+																: ''}
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													{filteredData.map((item, index) => (
+														<tr key={index}>
+															<td>{item.originalOrder + 1}</td>
+															<td>{item.artist}</td>
+															<td>
+																<a
+																	href={createSpotifyLink(
+																		item.artist,
+																		item.title
+																	)}
+																	target='_blank'
+																	rel='noopener noreferrer'
+																	className='table-body-anchor'
+																>
+																	{item.title}
+																	<FontAwesomeIcon
+																		icon={faHeadphones}
+																		className='headphone-icon'
+																	/>
+																</a>
+															</td>
+															<td>{item.added}</td>
+														</tr>
+													))}
+												</tbody>
+											</table>
+										</div>
+									) : (
+										<div className='search-not-found'>
+											Rate didn't play that in this playlist.
+										</div>
+									)
+								) : filteredData.length > 0 ? (
+									filteredData.map((item, index) => (
+										<SongCard
+											key={index}
+											title={item.title}
+											artist={item.artist}
+											added={item.added}
+											index={index}
+										/>
+									))
+								) : (
+									<div className='search-not-found'>
+										Rate didn't play that in this playlist.
+									</div>
+								)}
+								<Footer />
+							</div>
+						</Fragment>
+					}
+				/>
+				<Route path='/vault' element={<Vault />} />
+			</Routes>
+			
+		</Router>
 	)
 }
 

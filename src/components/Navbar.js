@@ -1,9 +1,18 @@
 import { Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
-const Navbar = ({ selectedPlaylist }) => {	
+import './css/navbar.css'
+
+const Navbar = ({ selectedPlaylist }) => {
+
+	const navigate = useNavigate()
 	let playlistNumber, playlistYear
+
+	const handleVaultClick = () => {
+		navigate('/vault')
+	}
 
 	switch (selectedPlaylist) {
 		case 'August':
@@ -51,8 +60,8 @@ const Navbar = ({ selectedPlaylist }) => {
 			playlistYear = '2023'
 			break
 		case 'September':
-			playlistNumber = '#15'
-			playlistYear = '2023'
+			playlistNumber = '#27'
+			playlistYear = '2024'
 			break
 		default:
 			playlistNumber = 'Unknown'
@@ -86,6 +95,11 @@ const Navbar = ({ selectedPlaylist }) => {
 			</div>
 			<div className='navbar-playlist-subtitle'>
 				Playlist Stats ({selectedPlaylist} {playlistYear})
+			</div>
+			<div className='vault-button-component'>
+				<button className='vault-button' onClick={handleVaultClick}>
+					The Vault
+				</button>
 			</div>
 		</Fragment>
 	)

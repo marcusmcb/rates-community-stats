@@ -1,7 +1,22 @@
 :root {
-	--border-color: #ccc;
-	--songcard-highlight-color: #f5cd8d;
-	--songcard-anchor-color: #e3c087;
+	/* Light border color */
+	--border-color-light: hsl(
+		0,
+		0%,
+		93%
+	); /* Very light gray (slightly darker than pure white) */
+
+	/* Spotify-related Colors */
+	--songcard-anchor-color: hsl(
+		45,
+		70%,
+		65%
+	); /* Soft golden-yellow, matching the selected-background-color */
+	--songcard-artist-color: hsl(
+		45,
+		65%,
+		75%
+	); /* Light gold, matching the songs-text-main-color */
 }
 
 .songcard-main {
