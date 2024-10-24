@@ -2,19 +2,16 @@ import { Fragment } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { useNavigate } from 'react-router-dom'
-import Footer from './Footer'
 
 import './css/navbar.css'
 import '../App.css'
 
 const VaultNavbar = () => {
-
-	const navigate = useNavigate()	
-
+	const navigate = useNavigate()
 	const handleHomeClick = () => {
 		navigate('/')
 	}
-	
+
 	return (
 		<Fragment>
 			<div className='navbar-main'>
@@ -38,18 +35,15 @@ const VaultNavbar = () => {
 					</a>
 				</div>
 			</div>
-			<div className='navbar-playlist-title'>
-				The Vault
-			</div>
-			<div className='navbar-playlist-subtitle'>
-				Search By Artist or Song
-			</div>
 			<div className='vault-button-component'>
 				<button className='vault-button' onClick={handleHomeClick}>
 					Home
 				</button>
 			</div>
-      <Footer />
+			<div className='navbar-playlist-title'>Spotify Playlist Vault</div>
+			<div className='navbar-playlist-subtitle'>
+				Search by artist, song title, or by Spotify screen name
+			</div>
 		</Fragment>
 	)
 }

@@ -1,0 +1,33 @@
+.query-form {
+  display: flex;
+  justify-content: center; /* Center the form horizontally */
+  margin-top: 20px; /* Add some space above the form */
+}
+
+.query-form form {
+  display: flex;
+  align-items: center; /* Center items vertically within the row */
+  gap: 15px; /* Space between the elements */
+}
+
+.query-form select,
+.query-form input,
+.query-form button {
+  padding: 10px 15px; /* 15px padding for left and right, 10px for top and bottom */
+  border: 1px solid #ccc; /* Add border to match form elements */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  font-size: 16px; /* Adjust font size for better readability */
+}
+
+.query-form button {
+  background-color: #e3c087; /* Custom button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Remove the border */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: background-color 0.3s; /* Add a smooth transition for background color */
+}
+
+.query-form button:hover {
+  background-color: #c3a06e; /* Darker shade on hover */
+}
+

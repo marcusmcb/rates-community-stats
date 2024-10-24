@@ -1,5 +1,5 @@
 .vault-button-component {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Fira Sans', sans-serif;  
   display: flex;
   justify-content: center;  
   margin: 15px 0px;  
@@ -9,8 +9,11 @@
   background-color: hsl(210, 10%, 20%);
   color: hsl(45, 70%, 65%);  
   border: 1px solid hsl(45, 70%, 65%);
+  border-radius: 10px;
   padding: 15px;
   cursor: pointer;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 600;
 }
 
 .vault-button:hover {
