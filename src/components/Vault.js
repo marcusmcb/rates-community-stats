@@ -86,7 +86,7 @@ const Vault = () => {
 							}}
 						>
 							<option value='artist'>Artist</option>
-							<option value='song'>Song/Term</option>
+							<option value='song'>Song</option>
 							<option value='added'>Added By</option>
 						</select>
 						<input
