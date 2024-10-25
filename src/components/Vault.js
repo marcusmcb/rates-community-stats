@@ -13,19 +13,25 @@ const Vault = () => {
 	const [searchType, setSearchType] = useState('artist')
 	const [searchText, setSearchText] = useState('')
 	const [finalSearchTerm, setFinalSearchTerm] = useState('')
+	const [data, setData] = useState(null) // Store data locally
 
-	const [runQuery, { loading, error, data }] = useLazyQuery(
+	const [runQuery, { loading, error }] = useLazyQuery(
 		searchType === 'artist'
 			? SEARCH_BY_ARTIST
 			: searchType === 'song'
 			? SEARCH_BY_TITLE
-			: SEARCH_BY_ADDED
+			: SEARCH_BY_ADDED,
+		{
+			onCompleted: (fetchedData) => {
+				setData(fetchedData) // Store fetched data locally to prevent auto-refreshes
+			},
+		}
 	)
 
 	const handleVaultSearch = (e) => {
 		e.preventDefault()
-		setFinalSearchTerm(searchText)
 		if (searchText !== '') {
+			setFinalSearchTerm(searchText)
 			runQuery({
 				variables: {
 					artist: searchType === 'artist' ? searchText : undefined,
@@ -34,6 +40,12 @@ const Vault = () => {
 				},
 			})
 		}
+	}
+
+	const handleSearchTypeChange = (e) => {
+		setSearchType(e.target.value)
+		setSearchText('')
+		setData(null) // Clear previous data when changing search type
 	}
 
 	useEffect(() => {
@@ -78,13 +90,7 @@ const Vault = () => {
 				<VaultNavbar />
 				<div className='query-form'>
 					<form onSubmit={handleVaultSearch}>
-						<select
-							value={searchType}
-							onChange={(e) => {
-								setSearchText('')
-								setSearchType(e.target.value)
-							}}
-						>
+						<select value={searchType} onChange={handleSearchTypeChange}>
 							<option value='artist'>Artist</option>
 							<option value='song'>Song</option>
 							<option value='added'>Added By</option>
@@ -101,13 +107,11 @@ const Vault = () => {
 
 				<div className='search-results'>
 					<div className='report-panel-detail'>
-						{loading && <p>Loading...</p>}						
+						{/* {loading && <p>Loading...</p>}						 */}
 						{renderPanel()}
 					</div>
 				</div>
-				<div>
-					{/* Stats Panel */}
-				</div>
+				<div>{/* Stats Panel */}</div>
 				<Footer />
 			</div>
 		</Fragment>
