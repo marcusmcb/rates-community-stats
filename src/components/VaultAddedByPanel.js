@@ -16,9 +16,6 @@ const VaultAddedByPanel = ({ searchText, data }) => {
 				's Spotify picks a total of{' '}
 				<span className='search-times-played'>{data.length}</span> time(s).
 			</div>
-			<div>
-				Stats
-			</div>
 			<div className='card-grid'>
 				{data.map((item, index) => (
 					<div className='card' key={index}>
