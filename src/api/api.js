@@ -37,3 +37,9 @@ export const SEARCH_BY_ADDED = gql`
     }
   }
 `
+
+export const TOTAL_SONGS = gql`
+  query TotalSongs {
+    totalSongs
+  }
+`

@@ -105,7 +105,9 @@ const Vault = () => {
 						{renderPanel()}
 					</div>
 				</div>
-
+				<div>
+					{/* Stats Panel */}
+				</div>
 				<Footer />
 			</div>
 		</Fragment>
