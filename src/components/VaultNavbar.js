@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { useNavigate } from 'react-router-dom'
 
+import './css/vaultnavbar.css'
 import './css/navbar.css'
 import '../App.css'
 
@@ -40,9 +41,9 @@ const VaultNavbar = () => {
 					Home
 				</button>
 			</div>
-			<div className='navbar-playlist-title'>Spotify Playlist Vault</div>
+			{/* <div className='navbar-playlist-title'>Spotify Playlist Vault</div> */}
 			<div className='navbar-playlist-subtitle'>
-				Search by artist, song title, or by Spotify screen name
+				Search all of the songs that Rate has played in his community playlist streams on Twitch by artist, song title, or by Spotify screen name
 			</div>
 		</Fragment>
 	)

@@ -1,6 +1,9 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useLazyQuery } from '@apollo/client'
 import VaultNavbar from './VaultNavbar'
+import VaultAddedByPanel from './VaultAddedByPanel'
+import VaultArtistPanel from './VaultArtistPanel'
+import VaultTitlePanel from './VaultTitlePanel'
 import Footer from './Footer'
 import { SEARCH_BY_ARTIST, SEARCH_BY_TITLE, SEARCH_BY_ADDED } from '../api/api'
 import '../App.css'
@@ -9,8 +12,8 @@ import './css/vault.css'
 const Vault = () => {
 	const [searchType, setSearchType] = useState('artist')
 	const [searchText, setSearchText] = useState('')
-  
-	// useLazyQuery allows us to run the query only when we explicitly call it
+	const [finalSearchTerm, setFinalSearchTerm] = useState('')
+
 	const [runQuery, { loading, error, data }] = useLazyQuery(
 		searchType === 'artist'
 			? SEARCH_BY_ARTIST
@@ -21,8 +24,7 @@ const Vault = () => {
 
 	const handleVaultSearch = (e) => {
 		e.preventDefault()
-
-		// Run the query only if searchText is not empty
+		setFinalSearchTerm(searchText)
 		if (searchText !== '') {
 			runQuery({
 				variables: {
@@ -34,12 +36,41 @@ const Vault = () => {
 		}
 	}
 
-	// Log the query results when data changes
 	useEffect(() => {
 		if (data) {
 			console.log('Query response:', data)
 		}
 	}, [data])
+
+	const renderPanel = () => {
+		if (!data) return null
+
+		switch (searchType) {
+			case 'artist':
+				return (
+					<VaultArtistPanel
+						searchText={finalSearchTerm}
+						data={data.searchByArtist}
+					/>
+				)
+			case 'song':
+				return (
+					<VaultTitlePanel
+						searchText={finalSearchTerm}
+						data={data.searchByTitle}
+					/>
+				)
+			case 'added':
+				return (
+					<VaultAddedByPanel
+						searchText={finalSearchTerm}
+						data={data.searchByAdded}
+					/>
+				)
+			default:
+				return null
+		}
+	}
 
 	return (
 		<Fragment>
@@ -50,12 +81,12 @@ const Vault = () => {
 						<select
 							value={searchType}
 							onChange={(e) => {
-                setSearchText('')
-                setSearchType(e.target.value)
-              }}
+								setSearchText('')
+								setSearchType(e.target.value)
+							}}
 						>
 							<option value='artist'>Artist</option>
-							<option value='song'>Song</option>
+							<option value='song'>Song/Term</option>
 							<option value='added'>Added By</option>
 						</select>
 						<input
@@ -69,27 +100,10 @@ const Vault = () => {
 				</div>
 
 				<div className='search-results'>
-					{/* {loading && <p>Loading...</p>} */}
-					{/* {error && <p>Error: {error.message}</p>} */}
-					{data && (
-						<ul>
-							{data[Object.keys(data)[0]].map((item, index) => (
-								<li key={index}>
-									<p>
-										<strong>{item.artist}</strong> - {item.title}
-									</p>
-									<p>Playlist Date: {item.playlist_date}</p>
-									<a
-										href={item.spotify_link}
-										target='_blank'
-										rel='noopener noreferrer'
-									>
-										Listen on Spotify
-									</a>
-								</li>
-							))}
-						</ul>
-					)}
+					<div className='report-panel-detail'>
+						{loading && <p>Loading...</p>}						
+						{renderPanel()}
+					</div>
 				</div>
 
 				<Footer />

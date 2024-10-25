@@ -5,8 +5,10 @@ export const SEARCH_BY_ARTIST = gql`
     searchByArtist(artist: $artist) {
       title
       artist
+      added
       playlist_date
       spotify_link
+      playlist_number
     }
   }
 `
@@ -16,8 +18,10 @@ export const SEARCH_BY_TITLE = gql`
     searchByTitle(title: $title) {
       title
       artist
+      added 
       playlist_date
       spotify_link
+      playlist_number
     }
   }
 `
@@ -29,6 +33,7 @@ export const SEARCH_BY_ADDED = gql`
       artist
       playlist_date
       spotify_link
+      playlist_number
     }
   }
 `
