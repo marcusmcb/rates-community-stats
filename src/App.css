@@ -230,8 +230,8 @@ th:nth-child(4) {
 .navbar-playlist-subtitle {
 	text-align: center;
 	font-size: 18px;
-	margin: 0px 200px 15px 200px;
-	color: lightgray;	
+	margin: 25px 200px 30px 200px;
+	color: lightgray;		
 }
 
 .songs-text {
@@ -250,12 +250,12 @@ th:nth-child(4) {
 
 @media (max-width: 768px) {
 	.navbar-playlist-subtitle {
-		margin: 0px 50px 15px 50px;
+		margin: 25px 50px 30px 50px;
 	}
 }
 
 @media (min-width: 1000px) {
 	.navbar-playlist-subtitle {
-		margin: 0px 300px 15px 300px;
+		margin: 25px 300px 30px 300px;
 	}
 }

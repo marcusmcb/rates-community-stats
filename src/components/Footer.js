@@ -1,15 +1,12 @@
+import './css/footer.css'
+
 const Footer = () => {
 	const currentYear = new Date().getFullYear()
 
 	return (
-		<div style={{ textAlign: 'center', fontSize: '12px', padding: '15px' }}>
+		<div className='main-footer-div'>
 			Built by{' '}
-			<a
-				href='https://www.mcbportfolio.com'
-				rel='noreferrer'
-				target='_blank'
-				style={{ textDecoration: 'none' }}
-			>
+			<a href='https://www.mcbportfolio.com' rel='noreferrer' target='_blank'>
 				MCB
 			</a>
 			, {currentYear}

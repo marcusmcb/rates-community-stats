@@ -1,0 +1,14 @@
+.main-footer-div {
+  text-align: center;
+  font-size: 12px;
+  padding: 15px;
+}
+
+.main-footer-div a {  
+  text-decoration: none;
+}
+
+.main-footer-div a:hover {
+  color: rgb(156, 255, 156);
+}
+
