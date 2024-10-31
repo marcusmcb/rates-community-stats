@@ -68,12 +68,14 @@
 .song-title {
 	font-size: 1.1rem;
 	font-weight: bold;
+	overflow: hidden;
 }
 
 .song-artist {
 	font-size: 0.9rem;
 	color: var(--border-color-secondary); /* Light gray or secondary color */
 	margin-top: 5px;
+	overflow: hidden;
 }
 
 .leaderboard-track-count {
