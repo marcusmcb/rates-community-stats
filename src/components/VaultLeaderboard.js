@@ -54,7 +54,7 @@ const VaultLeaderBoard = () => {
 						<h2>Most Spotify Adds Played</h2>
 						<table className='leaderboard-table'>
 							<tbody>
-								{viewerData.mostTracksByUser.slice(0, 10).map((user, index) => (
+								{viewerData.mostTracksByUser.map((user, index) => (
 									<tr key={index}>
 										<td className='leaderboard-user'>{user.added}</td>
 										<td className='leaderboard-track-count'>
