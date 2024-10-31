@@ -63,19 +63,21 @@
 	color: var(--text-color);
 	width: 200px;
 	padding: 8px 15px;
+	word-wrap: break-word; /* Breaks long text to the next line */
+	white-space: normal; /* Allows wrapping */
 }
 
 .song-title {
 	font-size: 1.1rem;
 	font-weight: bold;
-	overflow: hidden;
+	overflow-wrap: break-word;
 }
 
 .song-artist {
 	font-size: 0.9rem;
 	color: var(--border-color-secondary); /* Light gray or secondary color */
 	margin-top: 5px;
-	overflow: hidden;
+	overflow-wrap: break-word;
 }
 
 .leaderboard-track-count {
