@@ -43,3 +43,12 @@ export const TOTAL_SONGS = gql`
     totalSongs
   }
 `
+
+export const MOST_TRACKS_BY_USER = gql`
+  query MostTracksByUser {
+    mostTracksByUser {
+      added
+      trackCount
+    }
+  }
+`;

@@ -1,10 +1,9 @@
 import './css/vault.css'
 import '../App.css'
-import { useQuery } from '@apollo/client'
-import { TOTAL_SONGS } from '../api/api'
 
-const VaultAddedByPanel = ({ searchText, data }) => {
-	const totalSongs = useQuery(TOTAL_SONGS)
+
+const VaultAddedByPanel = ({ searchText, data }) => {		
+
 	const spotifyPlaylistURLString =
 		'https://open.spotify.com/search/RateWonder%20%26%20The%20Twitch%20Fam%20Pt.%20'
 
@@ -33,9 +32,9 @@ const VaultAddedByPanel = ({ searchText, data }) => {
 							</a>
 						</div>
 						<div className='card-playlist-date'>({item.playlist_date})</div>
-						{/* <div className='card-added-by'>
+						<div className='card-added-by'>
 							Added by: <span className='card-added-by-name'>{item.added}</span>
-						</div> */}
+						</div>
 						<a
 							className='spotify-song-link'
 							href={item.spotify_link}

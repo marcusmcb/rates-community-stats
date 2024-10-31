@@ -1,0 +1,94 @@
+:root {
+	/* Base Colors */
+	--background-color: hsl(210, 10%, 20%); /* Dark gray-blue */
+	--text-color: hsl(0, 0%, 100%); /* White */
+	--border-color: hsl(0, 0%, 75%); /* Light gray */
+	--border-color-secondary: hsl(40, 25%, 55%); /* Warm beige */
+
+	/* Accent Colors */
+	--selected-background-color: hsl(45, 70%, 65%); /* Soft golden-yellow */
+	--selected-text-color: hsl(0, 0%, 10%); /* Dark gray-black */
+	--entry-border-color: hsl(0, 0%, 90%); /* Very light gray */
+	--highlight-color: hsl(45, 70%, 65%); /* Same soft golden-yellow */
+
+	/* Special Elements */
+	--search-not-found-color: hsl(30, 80%, 55%); /* Orange */
+	--headphone-icon-color: hsl(45, 65%, 75%); /* Light gold */
+	--table-background-color: hsla(
+		210,
+		10%,
+		40%,
+		0.5
+	); /* Semi-transparent blue-gray */
+
+	/* Link and Song Text Colors */
+	--link-color: hsl(45, 65%, 75%); /* Light gold */
+	--songs-text-color: hsl(45, 70%, 70%); /* Pale yellow */
+	--songs-text-main-color: hsl(45, 65%, 75%); /* Light gold */
+	--success-color: rgb(156, 255, 156);
+}
+
+.leaderboard-main {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	gap: 20px; /* Adds space between the divs */
+	padding: 20px;
+  margin: 0 100px;
+}
+
+.leaderboard-top-picks,
+.leaderboard-top-artists,
+.leaderboard-top-songs {
+	flex: 1;
+	text-align: center; /* Centers content within each section */
+	padding: 10px;
+}
+
+.leaderboard-table {
+	width: 100%;
+	padding: 10px;
+	border-spacing: 0 10px; /* Add space between rows */
+  background-color: var(--background-color)
+}
+
+.leaderboard-user,
+.leaderboard-track-count {
+	padding: 8px 15px;
+	text-align: left;  
+}
+
+.leaderboard-user {
+	font-weight: bold;
+	color: var(--text-color);
+  width: 200px;
+}
+
+.leaderboard-track-count {
+	color: var(--songs-text-main-color);
+}
+
+@media (max-width: 1300px) {
+  .leaderboard-user {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .leaderboard-main {
+    flex-direction: column;  
+    margin: 0 20px;  
+  }
+  .leaderboard-user {
+    width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .leaderboard-user {
+    width: 70%;
+  }
+  .leaderboard-main {
+    margin: 0 10px;
+  }
+}

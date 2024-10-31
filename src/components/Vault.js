@@ -4,8 +4,15 @@ import VaultNavbar from './VaultNavbar'
 import VaultAddedByPanel from './VaultAddedByPanel'
 import VaultArtistPanel from './VaultArtistPanel'
 import VaultTitlePanel from './VaultTitlePanel'
+import VaultLeaderboard from './VaultLeaderboard'
 import Footer from './Footer'
-import { SEARCH_BY_ARTIST, SEARCH_BY_TITLE, SEARCH_BY_ADDED } from '../api/api'
+import {
+	SEARCH_BY_ARTIST,
+	SEARCH_BY_TITLE,
+	SEARCH_BY_ADDED,
+	MOST_TRACKS_BY_USER,
+} from '../api/api'
+import { useQuery } from '@apollo/client'
 import '../App.css'
 import './css/vault.css'
 
@@ -13,7 +20,14 @@ const Vault = () => {
 	const [searchType, setSearchType] = useState('artist')
 	const [searchText, setSearchText] = useState('')
 	const [finalSearchTerm, setFinalSearchTerm] = useState('')
-	const [data, setData] = useState(null) // Store data locally
+	const [data, setData] = useState(null)
+
+	// Fetch most tracks by user on page load
+	const {
+		loading: tracksByViewerLoading,
+		error: tracksByViewerError,
+		data: tracksByViewerData,
+	} = useQuery(MOST_TRACKS_BY_USER)
 
 	const [runQuery, { loading, error }] = useLazyQuery(
 		searchType === 'artist'
@@ -23,7 +37,7 @@ const Vault = () => {
 			: SEARCH_BY_ADDED,
 		{
 			onCompleted: (fetchedData) => {
-				setData(fetchedData) // Store fetched data locally to prevent auto-refreshes
+				setData(fetchedData)
 			},
 		}
 	)
@@ -45,7 +59,7 @@ const Vault = () => {
 	const handleSearchTypeChange = (e) => {
 		setSearchType(e.target.value)
 		setSearchText('')
-		setData(null) // Clear previous data when changing search type
+		setData(null)
 	}
 
 	useEffect(() => {
@@ -111,7 +125,10 @@ const Vault = () => {
 						{renderPanel()}
 					</div>
 				</div>
-				<div>{/* Stats Panel */}</div>
+				{tracksByViewerData && (
+					<VaultLeaderboard/>
+				)}
+
 				<Footer />
 			</div>
 		</Fragment>
