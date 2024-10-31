@@ -91,7 +91,7 @@
 @media (max-width: 1000px) {
 	.leaderboard-main {
 		flex-direction: column;
-		margin: 0 130px;
+		margin: 0 150px;
 	}
 	.leaderboard-user {
 		width: 80%;
@@ -103,6 +103,6 @@
 		width: 70%;
 	}
 	.leaderboard-main {
-		margin: 0 20px;
+		margin: 0 35px;
 	}
 }

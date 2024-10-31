@@ -47,9 +47,9 @@ const VaultLeaderBoard = () => {
 	])
 
 	return (
-		<div className='leaderboard-main'>
+		<div className='leaderboard-main'>			
 			<div className='leaderboard-top-picks'>
-				{viewerData && (
+				{viewerData && (					
 					<div>
 						<h2>Most Spotify Adds Played</h2>
 						<table className='leaderboard-table'>
