@@ -52,3 +52,23 @@ export const MOST_TRACKS_BY_USER = gql`
     }
   }
 `;
+
+export const MOST_PLAYED_ARTISTS = gql`
+  query MostPlayedArtists {
+    mostPlayedArtists {
+      artist
+      trackCount
+    }
+  }
+`
+
+export const MOST_PLAYED_TITLES = gql`
+  query MostPlayedTitles {
+    mostPlayedTitles {
+      title      
+      artist
+      playCount
+    }
+  }
+`
+
