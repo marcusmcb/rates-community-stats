@@ -16,8 +16,8 @@ import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
 import './App.css'
 
 const client = new ApolloClient({
-  uri: 'https://rates-community-stats-back-end-9a4935795bf8.herokuapp.com/graphql', 	
-  cache: new InMemoryCache(),
+	uri: 'https://rates-community-stats-back-end-9a4935795bf8.herokuapp.com/graphql',
+	cache: new InMemoryCache(),
 })
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('September')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('October')
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -50,6 +50,8 @@ const App = () => {
 						skipEmptyLines: true,
 						delimiter: ',',
 					})
+					console.log('---------------------------------')
+					console.log(parsedData)
 					const dataByAdded = processData(parsedData.data)
 					setProcessedData(dataByAdded)
 					setData(
@@ -140,6 +142,9 @@ const App = () => {
 													value={selectedPlaylist}
 													onChange={(e) => setSelectedPlaylist(e.target.value)}
 												>
+													<option value='October'>
+														October 2024 Playlist
+													</option>
 													<option value='September'>
 														September 2024 Playlist
 													</option>
@@ -159,7 +164,6 @@ const App = () => {
 													<option value='November'>
 														November 2023 Playlist
 													</option>
-													<option value='October'>October 2023 Playlist</option>
 												</select>
 											</div>
 
