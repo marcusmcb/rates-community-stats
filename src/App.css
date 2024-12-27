@@ -167,11 +167,10 @@ td {
 	padding: 8px;
 }
 
-td {
-	
+/* td {
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
+} */
 
 th {
 	cursor: pointer;
@@ -232,7 +231,7 @@ th:nth-child(4) {
 	text-align: center;
 	font-size: 18px;
 	margin: 25px 200px 30px 200px;
-	color: lightgray;		
+	color: lightgray;
 }
 
 .songs-text {
