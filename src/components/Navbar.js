@@ -48,8 +48,8 @@ const Navbar = ({ selectedPlaylist }) => {
 			playlistYear = '2024'
 			break
 		case 'December':
-			playlistNumber = '#18'
-			playlistYear = '2023'
+			playlistNumber = '#30'
+			playlistYear = '2024'
 			break
 		case 'November':
 			playlistNumber = '#29'
