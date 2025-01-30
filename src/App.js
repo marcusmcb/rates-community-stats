@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import Papa from 'papaparse'
+
 import LeftPanel from './components/LeftPanel'
 import RightPanel from './components/RightPanel'
 import DataCard from './components/DataCard'
@@ -9,6 +10,7 @@ import SongCard from './components/SongCard'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Vault from './components/Vault'
+
 import createSpotifyLink from './components/helpers/createSpotifyLink'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeadphones } from '@fortawesome/free-solid-svg-icons'
@@ -28,7 +30,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('December')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('January')
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -142,6 +144,7 @@ const App = () => {
 													value={selectedPlaylist}
 													onChange={(e) => setSelectedPlaylist(e.target.value)}
 												>
+													<option value='January'>January 2025 Playlist</option>
 													<option value='December'>
 														December 2024 Playlist
 													</option>
@@ -161,7 +164,7 @@ const App = () => {
 													<option value='February'>
 														February 2024 Playlist
 													</option>
-													<option value='January'>January 2024 Playlist</option>
+													
 												</select>
 											</div>
 
