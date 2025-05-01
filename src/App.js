@@ -30,7 +30,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('March')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('April')
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -144,6 +144,7 @@ const App = () => {
 													value={selectedPlaylist}
 													onChange={(e) => setSelectedPlaylist(e.target.value)}
 												>
+													<option value='April'>April 2025 Playlist</option>
 													<option value='March'>March 2025 Playlist</option>
 													<option value='February'>
 														February 2025 Playlist
@@ -163,10 +164,6 @@ const App = () => {
 													<option value='July'>July 2024 Playlist</option>
 													<option value='June'>June 2024 Playlist</option>
 													<option value='May'>May 2024 Playlist</option>
-													<option value='April'>April 2024 Playlist</option>
-													
-													
-													
 												</select>
 											</div>
 
