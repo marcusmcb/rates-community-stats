@@ -5,101 +5,86 @@ import { useNavigate } from 'react-router-dom'
 
 import './css/navbar.css'
 
-const Navbar = ({ selectedPlaylist }) => {
-
+const Navbar = ({ selectedPlaylist, playlistNumber, playlistYear, playlistLength, topUser, topUserCount }) => {
 	const navigate = useNavigate()
-	let playlistNumber, playlistYear
 
 	const handleVaultClick = () => {
 		navigate('/vault')
 	}
 
-	switch (selectedPlaylist) {
-		case 'August':
-			playlistNumber = '#26'
-			playlistYear = '2024'
-			break
-		case 'July':
-			playlistNumber = '#25'
-			playlistYear = '2024'
-			break
-		case 'June':
-			playlistNumber = '#24'
-			playlistYear = '2024'
-			break
-		case 'May':
-			playlistNumber = '#35'
-			playlistYear = '2025'
-			break
-		case 'April':
-			playlistNumber = '#34'
-			playlistYear = '2025'
-			break
-		case 'March':
-			playlistNumber = '#33'
-			playlistYear = '2025'
-			break
-		case 'February':
-			playlistNumber = '#32'
-			playlistYear = '2025'
-			break
-		case 'January':
-			playlistNumber = '#31'
-			playlistYear = '2025'
-			break
-		case 'December':
-			playlistNumber = '#30'
-			playlistYear = '2024'
-			break
-		case 'November':
-			playlistNumber = '#29'
-			playlistYear = '2024'
-			break
-		case 'October':
-			playlistNumber = '#28'
-			playlistYear = '2024'
-			break
-		case 'September':
-			playlistNumber = '#27'
-			playlistYear = '2024'
-			break
-		default:
-			playlistNumber = 'Unknown'
-			break
-	}
 	return (
 		<Fragment>
-			<div className='navbar-main'>
-				<div className='navbar-left'>
-					<a
-						href='https://twitch.tv/ratewonder'
-						rel='noreferrer'
-						target='_blank'
-					>
-						<FontAwesomeIcon icon={faTwitch} size='2x' />
-					</a>
+			<div className='navbar-container'>
+				<div className='navbar-main-flex'>
+					{/* Left: Icons and Title */}
+					<div className='navbar-left-box'>
+						{/* Stacked layout for desktop */}
+						<div className='navbar-left-stack'>
+							<div className='navbar-icon-col'>
+								<a
+									href='https://twitch.tv/ratewonder'
+									rel='noreferrer'
+									target='_blank'
+									className='navbar-icon-link'
+								>
+									<FontAwesomeIcon icon={faTwitch} size='2x' />
+								</a>
+								<a
+									href='https://open.spotify.com/user/djrate'
+									rel='noreferrer'
+									target='_blank'
+									className='navbar-icon-link'
+								>
+									<FontAwesomeIcon icon={faSpotify} size='2x' />
+								</a>
+							</div>
+							<div className='navbar-title-stack'>
+								<span className='navbar-title-large'>Rate's</span>
+								<span className='navbar-title-large'>Recaps</span>
+							</div>
+						</div>
+						{/* Inline layout for mobile */}
+						<div className='navbar-left-inline'>
+							<a
+								href='https://twitch.tv/ratewonder'
+								rel='noreferrer'
+								target='_blank'
+								className='navbar-icon-link'
+							>
+								<FontAwesomeIcon icon={faTwitch} size='2x' />
+							</a>
+							<span className='navbar-title-inline'>Rate's Recaps</span>
+							<a
+								href='https://open.spotify.com/user/djrate'
+								rel='noreferrer'
+								target='_blank'
+								className='navbar-icon-link'
+							>
+								<FontAwesomeIcon icon={faSpotify} size='2x' />
+							</a>
+						</div>
+					</div>
+					{/* Center: Playlist Info */}
+					<div className='navbar-center-box'>
+						<div className='navbar-playlist-title'>
+							Community Spotify Playlist {playlistNumber} ({selectedPlaylist} {playlistYear})
+						</div>
+						<div className='navbar-playlist-stats'>
+							Rate played {playlistLength} songs in this community playlist stream.
+						</div>
+						<div className='navbar-playlist-congrats'>
+							Congrats to <strong>{topUser}</strong> for having the most songs played with <strong>{topUserCount}</strong> songs.
+						</div>
+					</div>
+					{/* Right: Vault Button */}
+					<div className='navbar-right-box'>
+						<div className='vault-button-component'>
+							<button className='vault-button' onClick={handleVaultClick}>
+								Search The Vault
+							</button>
+						</div>
+					</div>
 				</div>
-				<div className='navbar-title'>Rate's Community Stats</div>
-				<div className='navbar-right'>
-					<a
-						href='https://open.spotify.com/user/djrate'
-						rel='noreferrer'
-						target='_blank'
-					>
-						<FontAwesomeIcon icon={faSpotify} size='2x' />
-					</a>
-				</div>
-			</div>
-			<div className='navbar-playlist-title'>
-				Community Spotify Playlist {playlistNumber}
-			</div>
-			<div className='navbar-playlist-subtitle'>
-				Playlist Stats ({selectedPlaylist} {playlistYear})
-			</div>
-			<div className='vault-button-component'>
-				<button className='vault-button' onClick={handleVaultClick}>
-					The Vault
-				</button>
 			</div>
 		</Fragment>
 	)

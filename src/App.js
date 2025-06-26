@@ -22,6 +22,39 @@ const client = new ApolloClient({
 	cache: new InMemoryCache(),
 })
 
+const getPlaylistMeta = (selectedPlaylist, processedData) => {
+	// Map playlist names to numbers and years
+	const playlistMap = {
+		'August': { number: '#26', year: '2024' },
+		'July': { number: '#25', year: '2024' },
+		'June': { number: '#24', year: '2024' },
+		'May': { number: '#35', year: '2025' },
+		'April': { number: '#34', year: '2025' },
+		'March': { number: '#33', year: '2025' },
+		'February': { number: '#32', year: '2025' },
+		'January': { number: '#31', year: '2025' },
+		'December': { number: '#30', year: '2024' },
+		'November': { number: '#29', year: '2024' },
+		'October': { number: '#28', year: '2024' },
+		'September': { number: '#27', year: '2024' },
+	}
+	const meta = playlistMap[selectedPlaylist] || { number: 'Unknown', year: '' }
+
+	// Calculate playlist length
+	const playlistLength = Object.values(processedData).reduce((acc, arr) => acc + arr.length, 0)
+
+	// Find top user
+	let topUser = '', topUserCount = 0
+	Object.entries(processedData).forEach(([user, arr]) => {
+		if (arr.length > topUserCount) {
+			topUser = user
+			topUserCount = arr.length
+		}
+	})
+
+	return { ...meta, playlistLength, topUser, topUserCount }
+}
+
 const App = () => {
 	const [data, setData] = useState([])
 	const [processedData, setProcessedData] = useState({})
@@ -112,6 +145,8 @@ const App = () => {
 			item.added.toLowerCase().includes(searchTerm.toLowerCase())
 	)
 
+	const meta = getPlaylistMeta(selectedPlaylist, processedData)
+
 	return (
 		<ApolloProvider client={client}>
 			<Router>
@@ -122,7 +157,14 @@ const App = () => {
 							<Fragment>
 								{/* <BillboardChart/> */}
 								<div className='main-app'>
-									<Navbar selectedPlaylist={selectedPlaylist} />
+									<Navbar
+										selectedPlaylist={selectedPlaylist}
+										playlistNumber={meta.number}
+										playlistYear={meta.year}
+										playlistLength={meta.playlistLength}
+										topUser={meta.topUser}
+										topUserCount={meta.topUserCount}
+									/>
 									{windowWidth > 860 ? (
 										<div>
 											<div className='panels-container'>

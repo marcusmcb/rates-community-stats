@@ -25,7 +25,7 @@ const VaultNavbar = () => {
 						<FontAwesomeIcon icon={faTwitch} size='2x' />
 					</a>
 				</div>
-				<div className='navbar-title'>Rate's Community Stats</div>
+				<div className='navbar-title'>Rate's Recaps</div>
 				<div className='navbar-right'>
 					<a
 						href='https://open.spotify.com/user/djrate'
