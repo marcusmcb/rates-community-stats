@@ -64,6 +64,7 @@ const App = () => {
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 	const [selectedPlaylist, setSelectedPlaylist] = useState('May')
+	const [isPlaylistVisible, setIsPlaylistVisible] = useState(false)
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -147,6 +148,10 @@ const App = () => {
 
 	const meta = getPlaylistMeta(selectedPlaylist, processedData)
 
+	const togglePlaylistVisibility = () => {
+		setIsPlaylistVisible((prev) => !prev)
+	}
+
 	return (
 		<ApolloProvider client={client}>
 			<Router>
@@ -221,122 +226,134 @@ const App = () => {
 												))}
 										</div>
 									)}
-									<div className='full-playlist-header'>The Full Playlist</div>
-
-									<div className='full-playlist-search'>
-										<input
-											type='text'
-											placeholder='Search by title, artist, or Spotify screen-name'
-											value={searchTerm}
-											onChange={(e) => setSearchTerm(e.target.value)}
-										/>
+									<div className='full-playlist-header'>
+										The Full Playlist
+										<button
+											onClick={togglePlaylistVisibility}
+											className='toggle-playlist-button'
+										>
+											{isPlaylistVisible ? '↑' : '↓'}
+										</button>
 									</div>
 
-									{windowWidth > 860 ? (
-										filteredData.length > 0 ? (
-											<div
-												style={{
-													overflowX: 'auto',
-													marginLeft: '5%',
-													marginRight: '5%',
-												}}
-											>
-												<table>
-													<thead>
-														<tr>
-															<th
-																onClick={() => handleSort('originalOrder')}
-																style={{ color: '#e3c087' }}
-															>
-																Order{' '}
-																{sortedColumn === 'originalOrder'
-																	? sortDirection === 'asc'
-																		? '↑'
-																		: '↓'
-																	: ''}
-															</th>
-															<th
-																onClick={() => handleSort('artist')}
-																style={{ color: '#e3c087' }}
-															>
-																Artist{' '}
-																{sortedColumn === 'artist'
-																	? sortDirection === 'asc'
-																		? '↑'
-																		: '↓'
-																	: ''}
-															</th>
-															<th
-																onClick={() => handleSort('title')}
-																style={{ color: '#e3c087' }}
-															>
-																Title{' '}
-																{sortedColumn === 'title'
-																	? sortDirection === 'asc'
-																		? '↑'
-																		: '↓'
-																	: ''}
-															</th>
-															<th
-																onClick={() => handleSort('added')}
-																style={{ color: '#e3c087' }}
-															>
-																Added By{' '}
-																{sortedColumn === 'added'
-																	? sortDirection === 'asc'
-																		? '↑'
-																		: '↓'
-																	: ''}
-															</th>
-														</tr>
-													</thead>
-													<tbody>
-														{filteredData.map((item, index) => (
-															<tr key={index}>
-																<td>{item.originalOrder + 1}</td>
-																<td>{item.artist}</td>
-																<td>
-																	<a
-																		href={createSpotifyLink(
-																			item.artist,
-																			item.title
-																		)}
-																		target='_blank'
-																		rel='noopener noreferrer'
-																		className='table-body-anchor'
+									{isPlaylistVisible && (
+										<>
+											<div className='full-playlist-search'>
+												<input
+													type='text'
+													placeholder='Search by title, artist, or Spotify screen-name'
+													value={searchTerm}
+													onChange={(e) => setSearchTerm(e.target.value)}
+												/>
+											</div>
+
+											{windowWidth > 860 ? (
+												filteredData.length > 0 ? (
+													<div
+														style={{
+															overflowX: 'auto',
+															marginLeft: '5%',
+															marginRight: '5%',
+														}}
+													>
+														<table>
+															<thead>
+																<tr>
+																	<th
+																		onClick={() => handleSort('originalOrder')}
+																		style={{ color: '#e3c087' }}
 																	>
-																		{item.title}
-																		<FontAwesomeIcon
-																			icon={faHeadphones}
-																			className='headphone-icon'
-																		/>
-																	</a>
-																</td>
-																<td>{item.added}</td>
-															</tr>
-														))}
-													</tbody>
-												</table>
-											</div>
-										) : (
-											<div className='search-not-found'>
-												Rate didn't play that in this playlist.
-											</div>
-										)
-									) : filteredData.length > 0 ? (
-										filteredData.map((item, index) => (
-											<SongCard
-												key={index}
-												title={item.title}
-												artist={item.artist}
-												added={item.added}
-												index={index}
-											/>
-										))
-									) : (
-										<div className='search-not-found'>
-											Rate didn't play that in this playlist.
-										</div>
+																		Order{' '}
+																		{sortedColumn === 'originalOrder'
+																			? sortDirection === 'asc'
+																				? '↑'
+																				: '↓'
+																			: ''}
+																	</th>
+																	<th
+																		onClick={() => handleSort('artist')}
+																		style={{ color: '#e3c087' }}
+																	>
+																		Artist{' '}
+																		{sortedColumn === 'artist'
+																			? sortDirection === 'asc'
+																				? '↑'
+																				: '↓'
+																			: ''}
+																	</th>
+																	<th
+																		onClick={() => handleSort('title')}
+																		style={{ color: '#e3c087' }}
+																	>
+																		Title{' '}
+																		{sortedColumn === 'title'
+																			? sortDirection === 'asc'
+																				? '↑'
+																				: '↓'
+																			: ''}
+																	</th>
+																	<th
+																		onClick={() => handleSort('added')}
+																		style={{ color: '#e3c087' }}
+																	>
+																		Added By{' '}
+																		{sortedColumn === 'added'
+																			? sortDirection === 'asc'
+																				? '↑'
+																				: '↓'
+																			: ''}
+																	</th>
+																</tr>
+															</thead>
+															<tbody>
+																{filteredData.map((item, index) => (
+																	<tr key={index}>
+																		<td>{item.originalOrder + 1}</td>
+																		<td>{item.artist}</td>
+																		<td>
+																			<a
+																				href={createSpotifyLink(
+																					item.artist,
+																					item.title
+																				)}
+																				target='_blank'
+																				rel='noopener noreferrer'
+																				className='table-body-anchor'
+																			>
+																				{item.title}
+																				<FontAwesomeIcon
+																					icon={faHeadphones}
+																					className='headphone-icon'
+																				/>
+																			</a>
+																		</td>
+																		<td>{item.added}</td>
+																	</tr>
+																))}
+															</tbody>
+														</table>
+													</div>
+												) : (
+													<div className='search-not-found'>
+														Rate didn't play that in this playlist.
+													</div>
+												)
+											) : filteredData.length > 0 ? (
+												filteredData.map((item, index) => (
+													<SongCard
+														key={index}
+														title={item.title}
+														artist={item.artist}
+														added={item.added}
+														index={index}
+													/>
+												))
+											) : (
+												<div className='search-not-found'>
+													Rate didn't play that in this playlist.
+												</div>
+											)}
+										</>
 									)}
 									<Footer />
 								</div>

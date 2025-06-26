@@ -5,12 +5,43 @@ import { useNavigate } from 'react-router-dom'
 
 import './css/navbar.css'
 
-const Navbar = ({ selectedPlaylist, playlistNumber, playlistYear, playlistLength, topUser, topUserCount }) => {
+const Navbar = ({
+	selectedPlaylist,
+	playlistNumber,
+	playlistYear,
+	playlistLength,
+	topUser,
+	topUserCount,
+}) => {
 	const navigate = useNavigate()
 
 	const handleVaultClick = () => {
 		navigate('/vault')
 	}
+
+	const topUserText = Array.isArray(topUser)
+		? (
+			<>
+				Congrats to{' '}
+				{topUser.map((user, index) => (
+					<strong key={index} className='highlight-text-color'>
+						{user}
+					</strong>
+				))}{' '}
+				for having the most songs played with{' '}
+				<strong className='highlight-text-color'>{topUserCount}</strong>{' '}
+				songs each.
+			</>
+		)
+		: (
+			<>
+				Congrats to{' '}
+				<strong className='highlight-text-color'>{topUser}</strong>{' '}
+				for having the most songs played with{' '}
+				<strong className='highlight-text-color'>{topUserCount}</strong>{' '}
+				songs.
+			</>
+		)
 
 	return (
 		<Fragment>
@@ -67,14 +98,16 @@ const Navbar = ({ selectedPlaylist, playlistNumber, playlistYear, playlistLength
 					{/* Center: Playlist Info */}
 					<div className='navbar-center-box'>
 						<div className='navbar-playlist-title'>
-							Community Spotify Playlist {playlistNumber} ({selectedPlaylist} {playlistYear})
+							Community Spotify Playlist{' '}
+							<span className='highlight-text-color'>{playlistNumber}</span> (
+							{selectedPlaylist} {playlistYear})
 						</div>
 						<div className='navbar-playlist-stats'>
-							Rate played {playlistLength} songs in this community playlist stream.
+							Rate played{' '}
+							<strong className='highlight-text-color'>{playlistLength}</strong>{' '}
+							songs in this community playlist stream.
 						</div>
-						<div className='navbar-playlist-congrats'>
-							Congrats to <strong>{topUser}</strong> for having the most songs played with <strong>{topUserCount}</strong> songs.
-						</div>
+						<div className='navbar-playlist-congrats'>{topUserText}</div>
 					</div>
 					{/* Right: Vault Button */}
 					<div className='navbar-right-box'>

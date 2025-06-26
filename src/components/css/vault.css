@@ -32,7 +32,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	margin-top: 20px;
+	/* margin-top: 20px; */
 }
 
 .query-form form {
@@ -148,6 +148,60 @@
 	font-weight: 600;
 }
 
+.vault-list {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0 auto 24px auto;
+	gap: 0.5rem;
+}
+
+.vault-list-header, .vault-list-row {
+	display: grid;
+	grid-template-columns: 2.5fr 1.2fr 1fr 1fr;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem 1rem;
+	background: var(--background-color);
+}
+
+.vault-list-header {
+	font-weight: bold;
+	color: var(--link-color);
+	border-bottom: 2px solid var(--border-color);
+	font-size: 1.1rem;
+}
+
+.vault-list-row {
+	border-bottom: 1px solid var(--border-color-secondary);
+	font-size: 1rem;
+	color: var(--text-color);
+	transition: background 0.2s;
+}
+
+.vault-list-row:last-child {
+	border-bottom: none;
+}
+
+.vault-list-row a {
+	color: var(--link-color);
+	text-decoration: underline;
+}
+
+.vault-list-row a:hover {
+	color: var(--success-color);
+}
+
+.vault-list-song {
+	font-weight: bold;
+	text-align: left; /* Ensure consistent left alignment */
+	word-break: break-word;
+}
+
+.vault-list-playlist, .vault-list-date, .vault-list-song-link {
+	text-align: left;
+}
+
 @media (max-width: 700px) {
 	.query-form {
 		flex-direction: column;
@@ -159,5 +213,51 @@
 		gap: 10px;
 		width: 100%;
 		max-width: 300px;
+	}
+
+	.vault-list-header, .vault-list-row {
+		grid-template-columns: 1.5fr 1fr 1fr 1fr;
+		font-size: 0.95rem;
+		padding: 0.5rem 0.3rem;
+	}
+}
+
+@media (max-width: 600px) {
+	.vault-list-header {
+		display: none;
+	}
+
+	.vault-list-row {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 0.75rem;
+		border-bottom: 1px solid var(--border-color-secondary);
+		background: var(--background-color);
+	}
+
+	.vault-list-row span {
+		display: block;
+		font-size: 0.9rem;
+		color: var(--text-color);
+		text-align: center;
+	}
+
+	.vault-list-song {
+		font-weight: bold;
+	}
+
+	.vault-list-playlist, .vault-list-date, .vault-list-song-link {
+		text-align: left;
+		font-size: 0.85rem;
+	}
+
+	.vault-list-row a {
+		color: var(--link-color);
+		text-decoration: underline;
+	}
+
+	.vault-list-row a:hover {
+		color: var(--success-color);
 	}
 }

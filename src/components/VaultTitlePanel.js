@@ -13,13 +13,19 @@ const VaultTitlePanel = ({ searchText, data }) => {
 				<span className='search-text-header'>"{searchText}"</span> a total of{' '}
 				<span className='search-times-played'>{data.length}</span> time(s).
 			</div>
-			<div className='card-grid'>
+			<div className='vault-list'>
+				<div className='vault-list-header'>
+					<span>Song</span>
+					<span>Playlist</span>
+					<span>Date</span>
+					<span>Spotify</span>
+				</div>
 				{data.map((item, index) => (
-					<div className='card' key={index}>
-						<div className='card-title'>
+					<div className='vault-list-row' key={index}>
+						<span className='vault-list-song'>
 							{item.artist} - {item.title}
-						</div>
-						<div className='card-playlist-number'>
+						</span>
+						<span className='vault-list-playlist'>
 							<a
 								className='spotify-playlist-link'
 								href={spotifyPlaylistURLString + item.playlist_number}
@@ -28,18 +34,17 @@ const VaultTitlePanel = ({ searchText, data }) => {
 							>
 								Spotify Playlist {item.playlist_number}
 							</a>
-						</div>
-						<div className='card-playlist-date'>({item.playlist_date})</div>
-						<div className='card-added-by'>
-							Added by: <span className='card-added-by-name'>{item.added}</span>
-						</div>
-						<a
-							href={item.spotify_link}
-							target='_blank'
-							rel='noopener noreferrer'
-						>
-							Listen on Spotify
-						</a>
+						</span>
+						<span className='vault-list-date'>{item.playlist_date}</span>
+						<span className='vault-list-song-link'>
+							<a
+								href={item.spotify_link}
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								Listen on Spotify
+							</a>
+						</span>
 					</div>
 				))}
 			</div>
