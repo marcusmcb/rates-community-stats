@@ -47,9 +47,7 @@ const Navbar = ({
 		<Fragment>
 			<div className='navbar-container'>
 				<div className='navbar-main-flex'>
-					{/* Left: Icons and Title */}
 					<div className='navbar-left-box'>
-						{/* Stacked layout for desktop */}
 						<div className='navbar-left-stack'>
 							<div className='navbar-icon-col'>
 								<a
@@ -74,7 +72,6 @@ const Navbar = ({
 								<span className='navbar-title-large'>Recaps</span>
 							</div>
 						</div>
-						{/* Inline layout for mobile */}
 						<div className='navbar-left-inline'>
 							<a
 								href='https://twitch.tv/ratewonder'
@@ -95,7 +92,6 @@ const Navbar = ({
 							</a>
 						</div>
 					</div>
-					{/* Center: Playlist Info */}
 					<div className='navbar-center-box'>
 						<div className='navbar-playlist-title'>
 							Community Spotify Playlist{' '}
@@ -109,7 +105,6 @@ const Navbar = ({
 						</div>
 						<div className='navbar-playlist-congrats'>{topUserText}</div>
 					</div>
-					{/* Right: Vault Button */}
 					<div className='navbar-right-box'>
 						<div className='vault-button-component'>
 							<button className='vault-button' onClick={handleVaultClick}>
