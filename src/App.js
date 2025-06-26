@@ -25,26 +25,30 @@ const client = new ApolloClient({
 const getPlaylistMeta = (selectedPlaylist, processedData) => {
 	// Map playlist names to numbers and years
 	const playlistMap = {
-		'August': { number: '#26', year: '2024' },
-		'July': { number: '#25', year: '2024' },
-		'June': { number: '#24', year: '2024' },
-		'May': { number: '#35', year: '2025' },
-		'April': { number: '#34', year: '2025' },
-		'March': { number: '#33', year: '2025' },
-		'February': { number: '#32', year: '2025' },
-		'January': { number: '#31', year: '2025' },
-		'December': { number: '#30', year: '2024' },
-		'November': { number: '#29', year: '2024' },
-		'October': { number: '#28', year: '2024' },
-		'September': { number: '#27', year: '2024' },
+		August: { number: '#26', year: '2024' },
+		July: { number: '#25', year: '2024' },
+		June: { number: '#36', year: '2025' },
+		May: { number: '#35', year: '2025' },
+		April: { number: '#34', year: '2025' },
+		March: { number: '#33', year: '2025' },
+		February: { number: '#32', year: '2025' },
+		January: { number: '#31', year: '2025' },
+		December: { number: '#30', year: '2024' },
+		November: { number: '#29', year: '2024' },
+		October: { number: '#28', year: '2024' },
+		September: { number: '#27', year: '2024' },
 	}
 	const meta = playlistMap[selectedPlaylist] || { number: 'Unknown', year: '' }
 
 	// Calculate playlist length
-	const playlistLength = Object.values(processedData).reduce((acc, arr) => acc + arr.length, 0)
+	const playlistLength = Object.values(processedData).reduce(
+		(acc, arr) => acc + arr.length,
+		0
+	)
 
 	// Find top user
-	let topUser = '', topUserCount = 0
+	let topUser = '',
+		topUserCount = 0
 	Object.entries(processedData).forEach(([user, arr]) => {
 		if (arr.length > topUserCount) {
 			topUser = user
@@ -63,7 +67,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('May')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('June')
 	const [isPlaylistVisible, setIsPlaylistVisible] = useState(false)
 
 	useEffect(() => {
@@ -191,6 +195,7 @@ const App = () => {
 													value={selectedPlaylist}
 													onChange={(e) => setSelectedPlaylist(e.target.value)}
 												>
+													<option value='June'>June 2025 Playlist</option>
 													<option value='May'>May 2025 Playlist</option>
 													<option value='April'>April 2025 Playlist</option>
 													<option value='March'>March 2025 Playlist</option>
@@ -210,8 +215,6 @@ const App = () => {
 													</option>
 													<option value='August'>August 2024 Playlist</option>
 													<option value='July'>July 2024 Playlist</option>
-													<option value='June'>June 2024 Playlist</option>
-													
 												</select>
 											</div>
 
