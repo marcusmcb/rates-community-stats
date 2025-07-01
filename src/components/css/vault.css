@@ -168,7 +168,7 @@
 .vault-list-header {
 	font-weight: bold;
 	color: var(--link-color);
-	border-bottom: 2px solid var(--border-color);
+	border-bottom: 1px solid var(--link-color);
 	font-size: 1.1rem;
 }
 
@@ -179,9 +179,9 @@
 	transition: background 0.2s;
 }
 
-.vault-list-row:last-child {
+/* .vault-list-row:last-child {
 	border-bottom: none;
-}
+} */
 
 .vault-list-row a {
 	color: var(--link-color);
