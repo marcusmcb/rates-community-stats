@@ -9,11 +9,11 @@ const VaultAddedByPanel = ({ searchText, data }) => {
 
 	return (
 		<div className='report-panel-container'>
-			<hr />
+			{/* <hr /> */}
 			<div className='report-panel-main'>
 				Rate has played <span className='search-text-header'>{searchText}</span>
 				's Spotify picks a total of{' '}
-				<span className='search-times-played'>{data.length}</span> time(s).
+				<span className='search-times-played'>{data.length}</span> time(s) in his community streams.
 			</div>
 			<div className='vault-list'>
 				<div className='vault-list-header'>
