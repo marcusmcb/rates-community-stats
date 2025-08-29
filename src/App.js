@@ -25,7 +25,7 @@ const client = new ApolloClient({
 const getPlaylistMeta = (selectedPlaylist, processedData) => {
 	// Map playlist names to numbers and years
 	const playlistMap = {
-		August: { number: '#26', year: '2024' },
+		August: { number: '#37', year: '2025' },
 		July: { number: '#25', year: '2024' },
 		June: { number: '#36', year: '2025' },
 		May: { number: '#35', year: '2025' },
@@ -67,7 +67,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('June')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('August')
 	const [isPlaylistVisible, setIsPlaylistVisible] = useState(false)
 
 	useEffect(() => {
@@ -195,6 +195,7 @@ const App = () => {
 													value={selectedPlaylist}
 													onChange={(e) => setSelectedPlaylist(e.target.value)}
 												>
+													<option value='August'>August 2025 Playlist</option>
 													<option value='June'>June 2025 Playlist</option>
 													<option value='May'>May 2025 Playlist</option>
 													<option value='April'>April 2025 Playlist</option>
@@ -212,9 +213,7 @@ const App = () => {
 													<option value='October'>October 2024 Playlist</option>
 													<option value='September'>
 														September 2024 Playlist
-													</option>
-													<option value='August'>August 2024 Playlist</option>
-													<option value='July'>July 2024 Playlist</option>
+													</option>													
 												</select>
 											</div>
 
