@@ -36,7 +36,7 @@ const getPlaylistMeta = (selectedPlaylist, processedData) => {
 		December: { number: '#30', year: '2024' },
 		November: { number: '#29', year: '2024' },
 		October: { number: '#28', year: '2024' },
-		September: { number: '#27', year: '2024' },
+		September: { number: '#38', year: '2025' },
 	}
 	const meta = playlistMap[selectedPlaylist] || { number: 'Unknown', year: '' }
 
@@ -67,7 +67,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('August')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('September')
 	const [isPlaylistVisible, setIsPlaylistVisible] = useState(false)
 
 	useEffect(() => {
@@ -195,6 +195,9 @@ const App = () => {
 													value={selectedPlaylist}
 													onChange={(e) => setSelectedPlaylist(e.target.value)}
 												>
+													<option value='September'>
+														September 2025 Playlist
+													</option>
 													<option value='August'>August 2025 Playlist</option>
 													<option value='June'>June 2025 Playlist</option>
 													<option value='May'>May 2025 Playlist</option>
@@ -211,9 +214,7 @@ const App = () => {
 														November 2024 Playlist
 													</option>
 													<option value='October'>October 2024 Playlist</option>
-													<option value='September'>
-														September 2024 Playlist
-													</option>													
+													
 												</select>
 											</div>
 
