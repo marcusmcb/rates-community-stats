@@ -69,7 +69,15 @@ const getInitialTheme = () => {
 
 const getInitialSkin = () => {
 	const stored = localStorage.getItem('rr-skin')
-	if (stored === 'gold' || stored === 'teal' || stored === 'purple') return stored
+	if (
+		stored === 'gold' ||
+		stored === 'teal' ||
+		stored === 'purple' ||
+		stored === 'christmas' ||
+		stored === 'light-green' ||
+		stored === 'pink'
+	)
+		return stored
 	return 'gold'
 }
 

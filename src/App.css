@@ -61,6 +61,40 @@
 	--border-color-secondary: hsl(270, 20%, 55%);
 }
 
+:root[data-skin='christmas'] {
+	/* Warm holiday red for highlights; evergreen for secondary accents */
+	--selected-background-color: hsl(0, 80%, 72%);
+	--highlight-color: hsl(0, 80%, 72%);
+
+	/* Use a lighter evergreen so it stays readable on dark background */
+	--link-color: hsl(145, 55%, 62%);
+	--songs-text-color: hsl(145, 45%, 58%);
+	--songs-text-main-color: hsl(145, 55%, 62%);
+	--headphone-icon-color: hsl(145, 55%, 62%);
+
+	--border-color-secondary: hsl(145, 25%, 55%);
+}
+
+:root[data-skin='light-green'] {
+	--selected-background-color: hsl(140, 65%, 75%);
+	--highlight-color: hsl(140, 65%, 75%);
+	--link-color: hsl(140, 45%, 62%);
+	--songs-text-color: hsl(140, 35%, 58%);
+	--songs-text-main-color: hsl(140, 45%, 62%);
+	--headphone-icon-color: hsl(140, 45%, 62%);
+	--border-color-secondary: hsl(140, 22%, 55%);
+}
+
+:root[data-skin='pink'] {
+	--selected-background-color: hsl(330, 75%, 78%);
+	--highlight-color: hsl(330, 75%, 78%);
+	--link-color: hsl(330, 60%, 66%);
+	--songs-text-color: hsl(330, 45%, 62%);
+	--songs-text-main-color: hsl(330, 60%, 66%);
+	--headphone-icon-color: hsl(330, 60%, 66%);
+	--border-color-secondary: hsl(330, 22%, 55%);
+}
+
 body {
 	font-family: 'Fira Sans', sans-serif;
 	margin: 0;

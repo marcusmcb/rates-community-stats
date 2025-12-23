@@ -141,6 +141,9 @@ const Navbar = ({
 								<option value='gold'>Gold</option>
 								<option value='teal'>Teal</option>
 								<option value='purple'>Purple</option>
+								<option value='christmas'>Christmas</option>
+								<option value='light-green'>Light Green</option>
+								<option value='pink'>Pink</option>
 							</select>
 							<div className='vault-button-component'>
 								<button className='vault-button' onClick={handleVaultClick}>
