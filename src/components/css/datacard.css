@@ -1,5 +1,5 @@
 .data-card {
-	border: 1px solid #ccc;
+	border: 1px solid var(--border-color);
 	padding: 20px;
 	margin: 20px;
 	border-radius: 8px;
@@ -20,13 +20,13 @@
 
 hr {
 	margin: 15px 0;
-	border-top: 1px solid #e0e0e0;
+	border-top: 1px solid var(--entry-border-color);
 }
 
 .arrow-icon {
 	cursor: pointer;
 	margin-left: 10px;
-	color: #e3c087;
+	color: var(--highlight-color);
 }
 
 .data-card-song-title {
@@ -35,11 +35,11 @@ hr {
 }
 
 .data-card-song-artist {
-	color: #f5cd8d !important;
+	color: var(--songs-text-main-color) !important;
 }
 
 .data-card-headphone-icon {
 	margin-left: 10px;
-	color: #e3c087;
+	color: var(--headphone-icon-color);
 	font-size: 13px;
 }

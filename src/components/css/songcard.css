@@ -1,23 +1,4 @@
-:root {
-	/* Light border color */
-	--border-color-light: hsl(
-		0,
-		0%,
-		93%
-	); /* Very light gray (slightly darker than pure white) */
 
-	/* Spotify-related Colors */
-	--songcard-anchor-color: hsl(
-		45,
-		70%,
-		65%
-	); /* Soft golden-yellow, matching the selected-background-color */
-	--songcard-artist-color: hsl(
-		45,
-		65%,
-		75%
-	); /* Light gold, matching the songs-text-main-color */
-}
 
 .songcard-main {
 	margin: 0 5px;
@@ -32,7 +13,7 @@
 }
 
 .songcard-index-strong {
-	color: var(--songcard-highlight-color);
+	color: var(--highlight-color);
 }
 
 .songcard-spotify-anchor {
@@ -42,14 +23,14 @@
 
 .songcard-spotify-icon {
 	margin-left: 10px;
-	color: var(--songcard-anchor-color);
+	color: var(--highlight-color);
 	font-size: 15px;
 }
 
 .songcard-spotify-artist {
 	font-size: 16px;
 	margin-top: 2px;
-	color: var(--songcard-highlight-color);
+	color: var(--songs-text-main-color);
 }
 
 .songcard-spotify-added-by {
@@ -61,5 +42,5 @@
 .songcard-spotify-added-by-span {
 	font-style: italic;
 	font-weight: 600;
-	color: var(--songcard-anchor-color);
+	color: var(--highlight-color);
 }

@@ -1,23 +1,4 @@
-:root {
-	/* Light border color */
-	--border-color-light: hsl(
-		0,
-		0%,
-		93%
-	); /* Very light gray (slightly darker than pure white) */
 
-	/* Spotify-related Colors */
-	--spotify-anchor-color: hsl(
-		45,
-		70%,
-		65%
-	); /* Soft golden-yellow, matching the selected-background-color */
-	--spotify-artist-color: hsl(
-		45,
-		65%,
-		75%
-	); /* Light gold, matching the songs-text-main-color */
-}
 
 .entry-header {
 	display: flex;
@@ -34,7 +15,7 @@
 	align-items: center;
 	cursor: pointer;
 	padding: 5px 0;
-	border-bottom: 1px solid var(--border-color-light);
+	border-bottom: 1px solid var(--entry-border-color);
 }
 
 .added-entry:last-child {
@@ -67,12 +48,12 @@
 
 .spotify-anchor-icon {
 	margin-left: 10px;
-	color: var(--spotify-anchor-color);
+	color: var(--highlight-color);
 }
 
 .spotify-artist {
 	font-size: 16px;
-	color: var(--spotify-artist-color);
+	color: var(--songs-text-main-color);
 }
 
 .left-panel-selector {

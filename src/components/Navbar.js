@@ -12,6 +12,10 @@ const Navbar = ({
 	playlistLength,
 	topUser,
 	topUserCount,
+	theme,
+	onToggleTheme,
+	skin,
+	onSkinChange,
 }) => {
 	const navigate = useNavigate()
 
@@ -19,29 +23,42 @@ const Navbar = ({
 		navigate('/vault')
 	}
 
-	const topUserText = Array.isArray(topUser)
-		? (
-			<>
-				Congrats to{' '}
-				{topUser.map((user, index) => (
-					<strong key={index} className='highlight-text-color'>
-						{user}
-					</strong>
-				))}{' '}
-				for having the most songs played with{' '}
-				<strong className='highlight-text-color'>{topUserCount}</strong>{' '}
-				songs each.
-			</>
-		)
-		: (
-			<>
-				Congrats to{' '}
-				<strong className='highlight-text-color'>{topUser}</strong>{' '}
-				for having the most songs played with{' '}
-				<strong className='highlight-text-color'>{topUserCount}</strong>{' '}
-				songs.
-			</>
-		)
+	const renderTopUsers = () => {
+		if (!Array.isArray(topUser)) {
+			return <strong className='highlight-text-color'>{topUser}</strong>
+		}
+
+		return topUser.map((user, index) => {
+			const isSecondLast = index === topUser.length - 2
+			const isLast = index === topUser.length - 1
+			const separator = isLast
+				? ''
+				: topUser.length === 2
+					? ' and '
+					: isSecondLast
+						? ' and '
+						: ', '
+
+			return (
+				<Fragment key={`${user}-${index}`}>
+					<strong className='highlight-text-color'>{user}</strong>
+					{separator}
+				</Fragment>
+			)
+		})
+	}
+
+	const topUserText = Array.isArray(topUser) ? (
+		<>
+			Congrats to {renderTopUsers()} for having the most songs played with{' '}
+			<strong className='highlight-text-color'>{topUserCount}</strong> songs each.
+		</>
+	) : (
+		<>
+			Congrats to {renderTopUsers()} for having the most songs played with{' '}
+			<strong className='highlight-text-color'>{topUserCount}</strong> songs.
+		</>
+	)
 
 	return (
 		<Fragment>
@@ -106,10 +123,30 @@ const Navbar = ({
 						<div className='navbar-playlist-congrats'>{topUserText}</div>
 					</div>
 					<div className='navbar-right-box'>
-						<div className='vault-button-component'>
-							<button className='vault-button' onClick={handleVaultClick}>
-								Search The Vault
+						<div className='navbar-controls'>
+							<button
+								className='navbar-control-button'
+								onClick={onToggleTheme}
+								aria-label='Toggle light/dark mode'
+								type='button'
+							>
+								{theme === 'dark' ? 'Light mode' : 'Dark mode'}
 							</button>
+							<select
+								className='navbar-control-select'
+								value={skin}
+								onChange={(e) => onSkinChange?.(e.target.value)}
+								aria-label='Select color skin'
+							>
+								<option value='gold'>Gold</option>
+								<option value='teal'>Teal</option>
+								<option value='purple'>Purple</option>
+							</select>
+							<div className='vault-button-component'>
+								<button className='vault-button' onClick={handleVaultClick}>
+									Search The Vault
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

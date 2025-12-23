@@ -46,17 +46,31 @@ const getPlaylistMeta = (selectedPlaylist, processedData) => {
 		0
 	)
 
-	// Find top user
-	let topUser = '',
-		topUserCount = 0
-	Object.entries(processedData).forEach(([user, arr]) => {
-		if (arr.length > topUserCount) {
-			topUser = user
-			topUserCount = arr.length
-		}
+	// Find top user(s) (handle ties)
+	let topUserCount = 0
+	Object.values(processedData).forEach((arr) => {
+		if (arr.length > topUserCount) topUserCount = arr.length
 	})
 
-	return { ...meta, playlistLength, topUser, topUserCount }
+	const topUsers = Object.entries(processedData)
+		.filter(([, arr]) => arr.length === topUserCount)
+		.map(([user]) => user)
+		.sort((a, b) => a.localeCompare(b))
+
+	return { ...meta, playlistLength, topUser: topUsers.length <= 1 ? topUsers[0] ?? '' : topUsers, topUserCount }
+}
+
+const getInitialTheme = () => {
+	const stored = localStorage.getItem('rr-theme')
+	if (stored === 'light' || stored === 'dark') return stored
+	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light'
+	return 'dark'
+}
+
+const getInitialSkin = () => {
+	const stored = localStorage.getItem('rr-skin')
+	if (stored === 'gold' || stored === 'teal' || stored === 'purple') return stored
+	return 'gold'
 }
 
 const App = () => {
@@ -69,6 +83,18 @@ const App = () => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 	const [selectedPlaylist, setSelectedPlaylist] = useState('November')
 	const [isPlaylistVisible, setIsPlaylistVisible] = useState(false)
+	const [theme, setTheme] = useState(getInitialTheme)
+	const [skin, setSkin] = useState(getInitialSkin)
+
+	useEffect(() => {
+		document.documentElement.dataset.theme = theme
+		localStorage.setItem('rr-theme', theme)
+	}, [theme])
+
+	useEffect(() => {
+		document.documentElement.dataset.skin = skin
+		localStorage.setItem('rr-skin', skin)
+	}, [skin])
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -173,6 +199,10 @@ const App = () => {
 										playlistLength={meta.playlistLength}
 										topUser={meta.topUser}
 										topUserCount={meta.topUserCount}
+										theme={theme}
+										onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+										skin={skin}
+										onSkinChange={setSkin}
 									/>
 									{windowWidth > 860 ? (
 										<div>
@@ -263,7 +293,7 @@ const App = () => {
 																<tr>
 																	<th
 																		onClick={() => handleSort('originalOrder')}
-																		style={{ color: '#e3c087' }}
+																		className='highlight-text-color'
 																	>
 																		Order{' '}
 																		{sortedColumn === 'originalOrder'
@@ -274,7 +304,7 @@ const App = () => {
 																	</th>
 																	<th
 																		onClick={() => handleSort('artist')}
-																		style={{ color: '#e3c087' }}
+																		className='highlight-text-color'
 																	>
 																		Artist{' '}
 																		{sortedColumn === 'artist'
@@ -285,7 +315,7 @@ const App = () => {
 																	</th>
 																	<th
 																		onClick={() => handleSort('title')}
-																		style={{ color: '#e3c087' }}
+																		className='highlight-text-color'
 																	>
 																		Title{' '}
 																		{sortedColumn === 'title'
@@ -296,7 +326,7 @@ const App = () => {
 																	</th>
 																	<th
 																		onClick={() => handleSort('added')}
-																		style={{ color: '#e3c087' }}
+																		className='highlight-text-color'
 																	>
 																		Added By{' '}
 																		{sortedColumn === 'added'

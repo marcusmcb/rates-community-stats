@@ -1,32 +1,4 @@
-:root {
-	/* Base Colors */
-	--background-color: hsl(210, 10%, 20%); /* Dark gray-blue */
-	--text-color: hsl(0, 0%, 100%); /* White */
-	--border-color: hsl(0, 0%, 75%); /* Light gray */
-	--border-color-secondary: hsl(40, 25%, 55%); /* Warm beige */
 
-	/* Accent Colors */
-	--selected-background-color: hsl(45, 70%, 65%); /* Soft golden-yellow */
-	--selected-text-color: hsl(0, 0%, 10%); /* Dark gray-black */
-	--entry-border-color: hsl(0, 0%, 90%); /* Very light gray */
-	--highlight-color: hsl(45, 70%, 65%); /* Same soft golden-yellow */
-
-	/* Special Elements */
-	--search-not-found-color: hsl(30, 80%, 55%); /* Orange */
-	--headphone-icon-color: hsl(45, 65%, 75%); /* Light gold */
-	--table-background-color: hsla(
-		210,
-		10%,
-		40%,
-		0.5
-	); /* Semi-transparent blue-gray */
-
-	/* Link and Song Text Colors */
-	--link-color: hsl(45, 65%, 75%); /* Light gold */
-	--songs-text-color: hsl(45, 70%, 70%); /* Pale yellow */
-	--songs-text-main-color: hsl(45, 65%, 75%); /* Light gold */
-	--success-color: rgb(156, 255, 156);
-}
 
 .query-form {
 	display: flex;

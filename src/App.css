@@ -1,30 +1,64 @@
 :root {
-	/* Base Colors */
-	--background-color: hsl(210, 10%, 20%); /* Dark gray-blue */
-	--text-color: hsl(0, 0%, 100%); /* White */
-	--border-color: hsl(0, 0%, 75%); /* Light gray */
-	--border-color-secondary: hsl(40, 25%, 55%); /* Warm beige */
+	/* Base (defaults to dark) */
+	--background-color: hsl(210, 10%, 20%);
+	--text-color: hsl(0, 0%, 100%);
+	--border-color: hsl(0, 0%, 75%);
+	--border-color-secondary: hsl(40, 25%, 55%);
+	--entry-border-color: hsl(0, 0%, 90%);
+	--table-background-color: hsla(210, 10%, 40%, 0.5);
 
-	/* Accent Colors */
-	--selected-background-color: hsl(45, 70%, 65%); /* Soft golden-yellow */
-	--selected-text-color: hsl(0, 0%, 10%); /* Dark gray-black */
-	--entry-border-color: hsl(0, 0%, 90%); /* Very light gray */
-	--highlight-color: hsl(45, 70%, 65%); /* Same soft golden-yellow */
+	/* Accent (defaults to “gold” skin) */
+	--selected-background-color: hsl(45, 70%, 65%);
+	--selected-text-color: hsl(0, 0%, 10%);
+	--highlight-color: hsl(45, 70%, 65%);
+	--link-color: hsl(45, 65%, 75%);
+	--songs-text-color: hsl(45, 70%, 70%);
+	--songs-text-main-color: hsl(45, 65%, 75%);
+	--headphone-icon-color: hsl(45, 65%, 75%);
 
-	/* Special Elements */
-	--search-not-found-color: hsl(30, 80%, 55%); /* Orange */
-	--headphone-icon-color: hsl(45, 65%, 75%); /* Light gold */
-	--table-background-color: hsla(
-		210,
-		10%,
-		40%,
-		0.5
-	); /* Semi-transparent blue-gray */
+	/* Special */
+	--search-not-found-color: hsl(30, 80%, 55%);
+}
 
-	/* Link and Song Text Colors */
-	--link-color: hsl(45, 65%, 75%); /* Light gold */
-	--songs-text-color: hsl(45, 70%, 70%); /* Pale yellow */
-	--songs-text-main-color: hsl(45, 65%, 75%); /* Light gold */
+:root[data-theme='light'] {
+	--background-color: hsl(0, 0%, 98%);
+	--text-color: hsl(210, 15%, 14%);
+	--border-color: hsl(210, 10%, 70%);
+	--border-color-secondary: hsl(210, 10%, 55%);
+	--entry-border-color: hsl(210, 12%, 85%);
+	--table-background-color: hsla(210, 15%, 94%, 1);
+	--selected-text-color: hsl(210, 15%, 14%);
+}
+
+/* Accent skins (tune only accent-related variables) */
+:root[data-skin='gold'] {
+	--selected-background-color: hsl(45, 80%, 72%);
+	--highlight-color: hsl(45, 80%, 72%);
+	--link-color: hsl(45, 75%, 58%);
+	--songs-text-color: hsl(45, 65%, 55%);
+	--songs-text-main-color: hsl(45, 75%, 58%);
+	--headphone-icon-color: hsl(45, 75%, 58%);
+	--border-color-secondary: hsl(40, 25%, 55%);
+}
+
+:root[data-skin='teal'] {
+	--selected-background-color: hsl(175, 60%, 55%);
+	--highlight-color: hsl(175, 60%, 55%);
+	--link-color: hsl(175, 55%, 40%);
+	--songs-text-color: hsl(175, 45%, 38%);
+	--songs-text-main-color: hsl(175, 55%, 40%);
+	--headphone-icon-color: hsl(175, 55%, 40%);
+	--border-color-secondary: hsl(175, 25%, 55%);
+}
+
+:root[data-skin='purple'] {
+	--selected-background-color: hsl(270, 75%, 80%);
+	--highlight-color: hsl(270, 75%, 80%);
+	--link-color: hsl(270, 70%, 65%);
+	--songs-text-color: hsl(270, 60%, 62%);
+	--songs-text-main-color: hsl(270, 70%, 65%);
+	--headphone-icon-color: hsl(270, 70%, 65%);
+	--border-color-secondary: hsl(270, 20%, 55%);
 }
 
 body {
@@ -134,8 +168,13 @@ a:visited {
 .full-playlist-search input {
 	text-align: center;
 	width: 50%;
-	height: 20px;
+	min-height: 36px;
+	padding: 8px 10px;
 	font-family: 'Fira Sans';
+	border: 1px solid var(--border-color);
+	border-radius: 10px;
+	background: transparent;
+	color: var(--text-color);
 }
 
 .search-not-found {
