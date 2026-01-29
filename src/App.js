@@ -32,7 +32,7 @@ const getPlaylistMeta = (selectedPlaylist, processedData) => {
 		April: { number: '#34', year: '2025' },
 		March: { number: '#33', year: '2025' },
 		February: { number: '#32', year: '2025' },
-		January: { number: '#31', year: '2025' },
+		January: { number: '#42', year: '2026' },
 		December: { number: '#41', year: '2025' },
 		November: { number: '#40', year: '2025' },
 		October: { number: '#39', year: '2025' },
@@ -43,7 +43,7 @@ const getPlaylistMeta = (selectedPlaylist, processedData) => {
 	// Calculate playlist length
 	const playlistLength = Object.values(processedData).reduce(
 		(acc, arr) => acc + arr.length,
-		0
+		0,
 	)
 
 	// Find top user(s) (handle ties)
@@ -57,13 +57,22 @@ const getPlaylistMeta = (selectedPlaylist, processedData) => {
 		.map(([user]) => user)
 		.sort((a, b) => a.localeCompare(b))
 
-	return { ...meta, playlistLength, topUser: topUsers.length <= 1 ? topUsers[0] ?? '' : topUsers, topUserCount }
+	return {
+		...meta,
+		playlistLength,
+		topUser: topUsers.length <= 1 ? (topUsers[0] ?? '') : topUsers,
+		topUserCount,
+	}
 }
 
 const getInitialTheme = () => {
 	const stored = localStorage.getItem('rr-theme')
 	if (stored === 'light' || stored === 'dark') return stored
-	if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light'
+	if (
+		window.matchMedia &&
+		window.matchMedia('(prefers-color-scheme: light)').matches
+	)
+		return 'light'
 	return 'dark'
 }
 
@@ -89,7 +98,7 @@ const App = () => {
 	const [sortDirection, setSortDirection] = useState('asc')
 	const [sortedColumn, setSortedColumn] = useState(null)
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-	const [selectedPlaylist, setSelectedPlaylist] = useState('December')
+	const [selectedPlaylist, setSelectedPlaylist] = useState('January')
 	const [isPlaylistVisible, setIsPlaylistVisible] = useState(false)
 	const [theme, setTheme] = useState(getInitialTheme)
 	const [skin, setSkin] = useState(getInitialSkin)
@@ -132,10 +141,10 @@ const App = () => {
 						parsedData.data.map((item, index) => ({
 							...item,
 							originalOrder: index,
-						}))
+						})),
 					)
 					const topAdded = Object.keys(dataByAdded).sort(
-						(a, b) => dataByAdded[b].length - dataByAdded[a].length
+						(a, b) => dataByAdded[b].length - dataByAdded[a].length,
 					)[0]
 					setSelectedAdded(topAdded)
 				})
@@ -181,7 +190,7 @@ const App = () => {
 		(item) =>
 			item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
 			item.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
-			item.added.toLowerCase().includes(searchTerm.toLowerCase())
+			item.added.toLowerCase().includes(searchTerm.toLowerCase()),
 	)
 
 	const meta = getPlaylistMeta(selectedPlaylist, processedData)
@@ -208,7 +217,9 @@ const App = () => {
 										topUser={meta.topUser}
 										topUserCount={meta.topUserCount}
 										theme={theme}
-										onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+										onToggleTheme={() =>
+											setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
+										}
 										skin={skin}
 										onSkinChange={setSkin}
 									/>
@@ -233,6 +244,7 @@ const App = () => {
 													value={selectedPlaylist}
 													onChange={(e) => setSelectedPlaylist(e.target.value)}
 												>
+													<option value='January'>January 2026 Playlist</option>
 													<option value='December'>
 														December 2025 Playlist
 													</option>
@@ -251,8 +263,6 @@ const App = () => {
 													<option value='February'>
 														February 2025 Playlist
 													</option>
-													<option value='January'>January 2025 Playlist</option>
-													
 												</select>
 											</div>
 
@@ -355,7 +365,7 @@ const App = () => {
 																			<a
 																				href={createSpotifyLink(
 																					item.artist,
-																					item.title
+																					item.title,
 																				)}
 																				target='_blank'
 																				rel='noopener noreferrer'
