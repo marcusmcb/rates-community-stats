@@ -51,7 +51,8 @@ const Navbar = ({
 	const topUserText = Array.isArray(topUser) ? (
 		<>
 			Congrats to {renderTopUsers()} for having the most songs played with{' '}
-			<strong className='highlight-text-color'>{topUserCount}</strong> songs each.
+			<strong className='highlight-text-color'>{topUserCount}</strong> songs
+			each.
 		</>
 	) : (
 		<>
